@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://example.com/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/"
+                href="https://example.com/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/"
+                href="https://example.com/"
                 />
   </url><url>
-    <loc>http://localhost:1313/license/</loc>
+    <loc>https://example.com/license/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/license/"
+                href="https://example.com/en/license/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/license/"
+                href="https://example.com/license/"
                 />
   </url><url>
-    <loc>http://localhost:1313/services/</loc>
+    <loc>https://example.com/services/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/services/"
+                href="https://example.com/en/services/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/services/"
+                href="https://example.com/services/"
                 />
   </url><url>
-    <loc>http://localhost:1313/legal/</loc>
+    <loc>https://example.com/legal/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/legal/"
+                href="https://example.com/en/legal/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/legal/"
+                href="https://example.com/legal/"
                 />
   </url>
 </urlset>
