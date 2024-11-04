@@ -1,6 +1,6 @@
 :root {
   /* === Cover / Landing area === */
-  --cover-text-color: #37501a;
+  --cover-text-color: #5e8f3d;
   /* Used for Landing screen menu buttons, but potentially usable for highlighting other things */
   --highlight: #75b34c;
   --highlight-contrast: var(--cover-text-color);
@@ -14,7 +14,7 @@
   --sticky-menu-text-color: #9fd067;
   /* === Alternating content (post) sections  === */
   /* Light section - text color */
-  --section-light-text-color: #3a4145;
+  --section-light-text-color: #5e8f3d;
   /* Light section - background color */
   --section-light-bg-color: #fff6d5;
   /* Dark section - text color */
@@ -22,7 +22,7 @@
   /* Dark section - background color */
   --section-dark-bg-color: #5e8f3d;
   /* Light&Dark section >quote. Suppressive color, compared to 'Light section - text color'*/
-  --section-uni-quote: grey;
+  --section-uni-quote: #37501a;
   /* Light&Dark section `code` a bit darker than 'Light section - background color' */
   --section-uni-code-bg-color: #e0ded7;
   /* === Single pages=== */
@@ -80,16 +80,16 @@ body {
     border-radius: 25px;
     width: fit-content; }
   #site-head .blog-title, #site-head.withCenteredImage .blog-title {
-    margin: 10px 0 10px 0;
-    font-size: 5rem;
-    letter-spacing: -1px;
-    text-shadow: var(--cover-title-text-shadow); }
+    margin: 450px 0 10px 0;
+    font-size: 6rem;
+    font-family: "Latin Modern";
+    letter-spacing: -1px; }
   #site-head .blog-description, #site-head.withCenteredImage .blog-description {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3rem;
     line-height: 1.5em;
     font-weight: 400;
-    font-family: "Roboto Slab", serif;
+    font-family: "Latin Modern", serif;
     letter-spacing: 0;
     text-shadow: var(--cover-title-text-shadow); }
   #site-head #site-languages, #site-head.withCenteredImage #site-languages {
@@ -110,7 +110,7 @@ body {
       color: var(--highlight-inverse-contrast);
       background-color: var(--highlight-inverse); }
   #site-head a.btn, #site-head #site-languages .btn-lang, #site-head.withCenteredImage a.btn, #site-head.withCenteredImage #site-languages .btn-lang {
-    font-family: "Oswald", sans-serif; }
+    font-family: "Latin Modern", sans-serif; }
   #site-head a.btn, #site-head.withCenteredImage a.btn {
     text-decoration: none;
     background-color: var(--highlight);
@@ -290,7 +290,7 @@ html {
 body {
   height: 100%;
   max-height: 100%;
-  font-family: "Roboto Slab", serif;
+  font-family: "Latin Modern", serif;
   font-size: 2rem;
   line-height: 1.6em;
   color: var(--section-light-text-color); }
@@ -311,13 +311,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   margin-top: 0;
   margin-bottom: 10px;
-  font-family: "Open Sans", sans-serif; }
+  font-family: "Latin Modern", sans-serif; }
 
 h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
   line-height: 120%;
   margin-top: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Latin Modern", sans-serif;
   margin-bottom: 0%; }
 
 h1 {
@@ -426,7 +426,7 @@ code, tt {
   color: var(--section-light-text-color);
   background-color: var(--section-uni-code-bg-color);
   border-radius: 3px;
-  font-family: Inconsolata, monospace, sans-serif;
+  font-family: "Latin Modern";
   font-size: 0.75em;
   padding: 3px 5px; }
 

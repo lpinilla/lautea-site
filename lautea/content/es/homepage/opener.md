@@ -3,12 +3,8 @@ title: "Sean bienvenidos!"
 weight: 1
 ---
 
-`Hugo-Scroll` theme alternates colors of sections that are placed on single page.
-The landing screen is meant to be visually striking.
+> En la pausa entre dos sorbos de té, se encuentra la eternidad. --- Dogen Zenji
 
-Single-page approach is oriented towards small to medium content length, that won't overwhelm the user.
-You can also delegate lengthier, less important or more sizeable content to [dedicated pages](services).
+El té es la segunda bebida más consumida **en el mundo**.
 
-> The belly rules the mind. --- spanish proverb
-
-By the way this welcome section won't show in the cover menu.
+Con LauTea vas a poder aprender sobre el *Tea Blending*. El arte de combinar distintos ingredientes para que, junto al té, puedan crear una experiencia sensorial única, además de aportarte un montón de beneficios.

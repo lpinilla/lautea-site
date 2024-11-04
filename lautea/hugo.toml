@@ -41,7 +41,7 @@ enableEmoji = true
     title = "LauTea"
 
     # The "description" of your website. This is used in the meta data of your generated html.
-    description = "Invitamos a redescubrirte a vos y al camino del té en cada taza 🌱🍵"
+    description = "Te invitamos a redescubrirte a vos y al camino del té en cada taza 🌱🍵"
 
     # Show a menu of languages available
     language_menu = true
@@ -76,13 +76,7 @@ enableEmoji = true
     showFooterLinks = false
 
     [params.meta]
-				keywords = "teablending, tea, infusiones, té, teenhebras"
-
-    #[[params.contacts]]
-    #    label = "phone"
-    #    value = "+49 1111 555555"
-    #    url = "tel:+49 1111 555555"
-    #    icon = "fa fa-phone"
+				keywords = "teablending, tea, infusiones, té, té en hebras, téenhebras, natural"
 
     [[params.contacts]]
         label = "url"

@@ -9,8 +9,9 @@ Neither embedded figure shortcode, nor Markdown hook were able to render image f
 You would have to .Resouces.GetMatch via custom shortcode.
 ![Jane Doe](/images/asset-happy-ethnic-woman-sitting-at-table-with-laptop-3769021.jpg) 
 -->
-See DE language for more examples of image management. There are multiple approaches.
 
-##### Professional Experience
+##### Nuestra historia
 
-A lot, but let us get into the details with some lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat lectus et magna placerat tincidunt. Nullam sit amet lectus vitae elit mollis rhoncus non eget lorem. Ut tempor sed dui quis volutpat.
+LauTea comenzó en 2023 como un proyecto para redescubrir al té como lo conocemos a través de las hebras y los blends. Cada blend de especias, flores o frutas no solo cumple un propósito sino que potencia alguna cualidad particular del té.
+
+Te invitamos a que reconozcas el sabor del té.
