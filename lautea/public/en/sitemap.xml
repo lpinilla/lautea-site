@@ -13,41 +13,5 @@
                 hreflang="en"
                 href="https://example.com/en/"
                 />
-  </url><url>
-    <loc>https://example.com/en/license/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://example.com/license/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://example.com/en/license/"
-                />
-  </url><url>
-    <loc>https://example.com/en/services/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://example.com/services/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://example.com/en/services/"
-                />
-  </url><url>
-    <loc>https://example.com/en/legal/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://example.com/legal/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://example.com/en/legal/"
-                />
   </url>
 </urlset>

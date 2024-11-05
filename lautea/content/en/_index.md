@@ -10,11 +10,11 @@ header_use_video: false
 #
 # Headers are safeHTML, you can use HTML tags such as b,i,u,br
 header_headline: "LauTea"
-header_subheadline: "Invitamos a <b>redescubrirte</b> a vos y al camino del té en cada taza 🌱🍵"
+header_subheadline: "We invite you to <b>rediscover</b> yourself and the path of tea in every cup 🌱🍵"
 
 # Add a 'Go back to top' item to the navigation menu
 # Title: name of navigation menu entry
 # Weight (i. e. position in menu): none = no menu entry, first = add as first entry, last = ad as last entry
-nav_to_top_title: "Volver al inicio"
+nav_to_top_title: "Back to top"
 nav_to_top_weight: last
 ---
