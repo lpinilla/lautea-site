@@ -106,3 +106,6 @@ enableEmoji = true
     contentDir = "content/en"
     languageName = "English"
 
+[services]
+  [services.googleAnalytics]
+    id = 'G-GGDYGPBNGL'
