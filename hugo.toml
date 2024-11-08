@@ -78,7 +78,7 @@ enableEmoji = true
     showFooterLinks = false
 
     [params.meta]
-			keywords = "teablending,tea,infusiones,té,té en hebras,téenhebras,natural,tealover,herbaltea,matcha,chai,chado,gongfucha,gongfu,blacktea,greentea,teacup,teaislife,organictea,tisane,bubbletea,milktealover,greentealover,teverde,tenegro,terojo,teargentino,breakfasttea,afternootea,te de la tarde,te verde, te negro,tisanas,cultura de té, té argentino,tea blenders,pu-erh,oolong,wulong,puerh"
+			keywords = "teablending,tea,infusiones,té,té en hebras,téenhebras,natural,tealover,herbaltea,matcha,chai,chado,gongfucha,gongfu,blacktea,greentea,teacup,teaislife,organictea,tisane,bubbletea,milktealover,greentealover,teverde,tenegro,terojo,teargentino,breakfasttea,afternootea,te de la tarde,te verde, te negro,tisanas,cultura de té, té argentino,tea blenders,pu-erh,oolong,wulong,puerh,te blanco,teblanco,white tea,whitetea,kukicha,manzanilla,chamomile,saquitos,detox"
 
     [[params.contacts]]
         label = "url"
