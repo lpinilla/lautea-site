@@ -78,7 +78,7 @@ enableEmoji = true
     showFooterLinks = false
 
     [params.meta]
-			keywords = "teablending,tea,infusiones,té,té en hebras,téenhebras,natural,tealover,herbaltea,matcha,chai,chado,gongfucha,gongfu,blacktea,greentea,teacup,teaislife,organictea,tisane,bubbletea,milktealover,greentealover,teverde,tenegro,terojo,teargentino,breakfasttea,afternootea,te de la tarde,te verde, te negro,tisanas,cultura de té, té argentino,tea blenders,pu-erh,oolong,wulong,puerh,te blanco,teblanco,white tea,whitetea,kukicha,manzanilla,chamomile,saquitos,detox,chai,te chai,merienda,merendar"
+			keywords = "teablending,teenhebras,teargentino,loseleaftea,teablend,tea,teaceremony,ceremoniadete,blendsdete"
 
     [[params.contacts]]
         label = "url"
@@ -91,6 +91,19 @@ enableEmoji = true
          value = "@lautea.blends"
          url = "https://www.tiktok.com/@lautea.blends"
          icon = "fa fa-joplin"
+
+     [[params.contacts]]
+         label = "url"
+         value = "@lautea.blends"
+         url = "https://www.youtube.com/@lautea.blends"
+         icon = "fa fa-youtube"
+
+     [[params.contacts]]
+         label = "url"
+         value = "@lautea_blends"
+         url = "https://ar.pinterest.com/lautea_blends/"
+         icon = "fa fa-pinterest"
+
 
 # Define additional languages
 [languages]
