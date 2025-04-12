@@ -1,5 +1,5 @@
 ---
-title: "Sean bienvenidos!"
+title: "Bienvenidos!"
 weight: 1
 ---
 

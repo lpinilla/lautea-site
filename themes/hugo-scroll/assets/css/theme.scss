@@ -1,16 +1,18 @@
 body {
   --color-text: var(--section-light-text-color);
   --color-background: var(--section-light-bg-color);
+  background-color:  #fff6d5;
 }
 /* ===== Cover =======*/
 
 #blog-logo {
   display: block;
-  max-height: 100px;
+  max-height: 250px;
   width: auto;
   margin: 0 auto;
   line-height: 0;
 }
+
 
 #site-head.withCenteredImage{
   /* can't be used together with video */
@@ -50,21 +52,20 @@ body {
   }
 
   .blog-title {
-    margin: 650px 0 50px 0;
-    font-size: 6rem;
-    font-family: "Latin Modern";
-    letter-spacing: -1px;
+    margin: 10px 0 10px 0;
+    font-size: 5rem;
+    //letter-spacing: -1px;
     //text-shadow: var(--cover-title-text-shadow);
   }
 
   .blog-description {
     margin: 0;
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height: 1.5em;
     font-weight: 400;
-    font-family: "Latin Modern", serif;
+    font-family: "Roboto Slab", serif;
     letter-spacing: 0;
-    text-shadow: var(--cover-title-text-shadow);
+    //text-shadow: var(--cover-title-text-shadow);
   }
 
   #site-languages {
@@ -93,7 +94,7 @@ body {
 
   // Landing screen menu
   a.btn, #site-languages .btn-lang {
-    font-family: "Latin Modern", sans-serif;
+    font-family: "Oswald", sans-serif;
   }
 
   a.btn {
@@ -281,20 +282,21 @@ a.fn-item {
 
 /** ==========  Site footer ============ */
 .site-footer {
-  background: var(--footer-color-background);
-  color: var(--footer-color);
+  //background: var(--footer-color-background);
+  color: #fff6d5;
   font-family: "Open Sans", sans-serif;
   font-size: 1.3rem;
   position: relative;
   margin: 0rem 0 0 0;
-  padding: 1rem 0;
-
-  line-height: 1.5em;
+  background-color: #fff6d5;
+  //padding: 1rem 0;
+  //line-height: 1.5em;
   text-align: center;
 }
 
 .site-footer a {
-  color: var(--footer-color);
+  //color: var(--footer-color);
+  color: #fff6d5;
   text-decoration: underline;
 }
 

@@ -37,12 +37,13 @@
 
 body {
   --color-text: var(--section-light-text-color);
-  --color-background: var(--section-light-bg-color); }
+  --color-background: var(--section-light-bg-color);
+  background-color: #fff6d5; }
 
 /* ===== Cover =======*/
 #blog-logo {
   display: block;
-  max-height: 100px;
+  max-height: 250px;
   width: auto;
   margin: 0 auto;
   line-height: 0; }
@@ -80,18 +81,15 @@ body {
     border-radius: 25px;
     width: fit-content; }
   #site-head .blog-title, #site-head.withCenteredImage .blog-title {
-    margin: 650px 0 50px 0;
-    font-size: 6rem;
-    font-family: "Latin Modern";
-    letter-spacing: -1px; }
+    margin: 10px 0 10px 0;
+    font-size: 5rem; }
   #site-head .blog-description, #site-head.withCenteredImage .blog-description {
     margin: 0;
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height: 1.5em;
     font-weight: 400;
-    font-family: "Latin Modern", serif;
-    letter-spacing: 0;
-    text-shadow: var(--cover-title-text-shadow); }
+    font-family: "Roboto Slab", serif;
+    letter-spacing: 0; }
   #site-head #site-languages, #site-head.withCenteredImage #site-languages {
     text-align: right; }
   #site-head #site-languages .btn-lang, #site-head.withCenteredImage #site-languages .btn-lang {
@@ -110,7 +108,7 @@ body {
       color: var(--highlight-inverse-contrast);
       background-color: var(--highlight-inverse); }
   #site-head a.btn, #site-head #site-languages .btn-lang, #site-head.withCenteredImage a.btn, #site-head.withCenteredImage #site-languages .btn-lang {
-    font-family: "Latin Modern", sans-serif; }
+    font-family: "Oswald", sans-serif; }
   #site-head a.btn, #site-head.withCenteredImage a.btn {
     text-decoration: none;
     background-color: var(--highlight);
@@ -246,18 +244,16 @@ a.fn-item {
 
 /** ==========  Site footer ============ */
 .site-footer {
-  background: var(--footer-color-background);
-  color: var(--footer-color);
+  color: #fff6d5;
   font-family: "Open Sans", sans-serif;
   font-size: 1.3rem;
   position: relative;
   margin: 0rem 0 0 0;
-  padding: 1rem 0;
-  line-height: 1.5em;
+  background-color: #fff6d5;
   text-align: center; }
 
 .site-footer a {
-  color: var(--footer-color);
+  color: #fff6d5;
   text-decoration: underline; }
 
 .site-footer a:hover {
@@ -536,12 +532,10 @@ table {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    min-height: 240px;
-    padding: 15% 0;
-    height: 100%;
-    margin-bottom: 0rem; }
+    min-height: 10px;
+    background-size: clamp(500, 80%, 750px) auto; }
   .blog-title {
-    margin: 475px 0 10px 0;
+    margin: 60px 0 10px 0;
     font-size: 4rem;
     letter-spacing: -1px; }
   .blog-description {
@@ -574,7 +568,7 @@ table {
   .post-holder {
     padding-top: 20px; }
   #blog-logo {
-    max-height: 80px; }
+    max-height: 200px; }
   .inner,
   .pagination {
     width: auto;

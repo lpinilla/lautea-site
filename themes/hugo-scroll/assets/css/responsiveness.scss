@@ -37,15 +37,14 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    min-height: 240px;
-    padding: 15% 0;
-    height: 100%;
-    margin-bottom: 0rem;
+    min-height: 10px;
+    background-size: clamp(500, 80%, 750px) auto;
   }
+
 
   .blog-title {
     //margin-top: 100px;
-    margin: 475px 0 10px 0;
+    margin: 60px 0 10px 0;
     font-size: 4rem;
     letter-spacing: -1px;
   }
@@ -101,7 +100,7 @@
   }
 
   #blog-logo {
-    max-height: 80px;
+    max-height: 200px;
   }
 
   .inner,
