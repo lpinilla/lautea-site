@@ -13,5 +13,7 @@
                 hreflang="es"
                 href="https://example.com/"
                 />
+  </url><url>
+    <loc>https://example.com/c004b45019cd3ac24b07df780d33386d56c568e552a3f04145499d5c58088578/</loc>
   </url>
 </urlset>
