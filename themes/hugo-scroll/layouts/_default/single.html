@@ -1,4 +1,14 @@
 {{ define "main" }}
+
+{{ with $img := resources.Get .Params.header_image }}
+{{ $image_options := $.Site.Params.image_options | default "webp q90 lanczos photo" -}}
+<style>
+	main { background-image: url('{{- .RelPermalink -}}'); background-size: cover;background-position: center;background-repeat:space; }
+	p { font-size: 25px; }
+	img { padding-top: 50px;}
+</style>
+{{- end }}
+
   <main class="content page-template page-{{ .Slug }}">
     <article class="post page">
       <header class="post-header">
@@ -12,4 +22,5 @@
       </section>
     </article>
   </main>
+
 {{ end }}

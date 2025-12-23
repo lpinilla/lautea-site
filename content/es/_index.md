@@ -11,7 +11,6 @@ header_use_video: false
 #
 # Headers are safeHTML, you can use HTML tags such as b,i,u,br
 header_headline: "LauTea"
-header_subheadline: "Te invitamos a <b>redescubrirte</b> a vos y al camino del té en cada taza 🌱🍵"
 
 # Add a 'Go back to top' item to the navigation menu
 # Title: name of navigation menu entry
