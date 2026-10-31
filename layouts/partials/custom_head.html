@@ -1,0 +1,126 @@
+{{- /*
+  Override del partial del tema (el lookup order de Hugo prioriza /layouts
+  del proyecto sobre el partial equivalente dentro del tema).
+  Contenido:
+    1. canonical
+    2. hreflang (ES/EN + x-default)
+    3. JSON-LD: Organization + WebSite en la home, Article y Person en las
+       páginas que correspondan
+
+  Nota de criterio: el schema en general NO mejora las citas de IA (el mejor
+  estudio controlado da nulo). Lo que sí sirve es Organization + sameAs — le
+  dice a un motor que Instagram, el sitio y las demás redes son la MISMA
+  entidad. Por eso está acá y nada más.
+
+  Ojo con el escapado: armar el objeto entero y emitirlo con safeJS. Si se
+  hace `{{ .Title | jsonify }}` dentro del <script>, Go lo escapa dos veces
+  y el JSON queda inválido.
+*/ -}}
+
+{{- $defaultLang := .Site.Home.Language.Lang -}}
+
+{{/* ---------- 0. CSS propio de LauTea ---------- */}}
+{{/* Se carga acá (y no editando el tema) porque el tema es un submódulo:
+    así nuestras reglas sobreviven a las actualizaciones del tema. */}}
+{{- $lauteaCSS := resources.Get "css/lautea.css" | resources.Minify | resources.Fingerprint -}}
+<link rel="stylesheet" href="{{ $lauteaCSS.RelPermalink }}" integrity="{{ $lauteaCSS.Data.Integrity }}" />
+
+{{/* ---------- 1. Canonical ---------- */}}
+<link rel="canonical" href="{{ .Permalink }}" />
+
+{{/* ---------- 2. hreflang ---------- */}}
+{{- if .IsTranslated -}}
+  {{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />
+  {{- end }}
+  {{- range .AllTranslations }}
+    {{- if eq .Language.Lang $defaultLang }}
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+    {{- end }}
+  {{- end }}
+{{- end -}}
+
+{{/* ---------- 2b. Geo ---------- */}}
+<meta name="geo.region" content="AR-B" />
+<meta name="geo.placename" content="Quilmes, Buenos Aires, Argentina" />
+
+{{/* ---------- 3. Datos compartidos ---------- */}}
+{{- $sameAs := slice -}}
+{{- range .Site.Params.contacts -}}
+  {{- with .url -}}{{- $sameAs = $sameAs | append . -}}{{- end -}}
+{{- end -}}
+{{- $logoURL := "" -}}
+{{- with resources.Get .Site.Params.favicon -}}{{- $logoURL = .Permalink -}}{{- end -}}
+{{- $orgID := printf "%s#organization" .Site.Home.Permalink -}}
+{{- $siteID := printf "%s#website" .Site.Home.Permalink -}}
+{{- $authorName := "Lautaro Pinilla" -}}
+{{- $authorURL := "sobre-mi/" | absURL -}}
+
+{{/* ---------- 3a. Organization + WebSite (home) ---------- */}}
+{{- if .IsHome }}
+  {{- $org := dict
+      "@context" "https://schema.org"
+      "@type" "Organization"
+      "@id" $orgID
+      "name" "LauTea"
+      "alternateName" "LauTea Blends"
+      "url" .Site.Home.Permalink
+      "logo" $logoURL
+      "image" $logoURL
+      "description" (or .Description .Site.Params.description)
+      "foundingDate" "2023"
+      "foundingLocation" (dict "@type" "Place" "name" "Quilmes, Buenos Aires, Argentina")
+      "founder" (dict "@type" "Person" "name" $authorName "url" $authorURL)
+      "knowsAbout" (slice "Tea blending" "Té en hebras" "Té suelto" "Ceremonia del té" "Blends de té")
+      "areaServed" (dict "@type" "Country" "name" "Argentina")
+      "sameAs" $sameAs
+  -}}
+  {{- $site := dict
+      "@context" "https://schema.org"
+      "@type" "WebSite"
+      "@id" $siteID
+      "url" .Site.Home.Permalink
+      "name" "LauTea"
+      "inLanguage" .Language.Lang
+      "publisher" (dict "@id" $orgID)
+      "description" (or .Description .Site.Params.description)
+  -}}
+<script type="application/ld+json">{{ $org | jsonify | safeJS }}</script>
+<script type="application/ld+json">{{ $site | jsonify | safeJS }}</script>
+{{- end }}
+
+{{/* ---------- 3b. Article (páginas del tipo articulos) ---------- */}}
+{{- if and (not .IsHome) (eq .Type "articulos") (ne .File.BaseFileName "sobre-mi") }}
+  {{- $article := dict
+      "@context" "https://schema.org"
+      "@type" "Article"
+      "headline" .Title
+      "description" (or .Description (.Summary | plainify))
+      "inLanguage" .Language.Lang
+      "datePublished" (.Date.Format "2006-01-02")
+      "dateModified" (.Lastmod.Format "2006-01-02")
+      "author" (dict "@type" "Person" "name" (.Params.author | default $authorName) "url" $authorURL)
+      "publisher" (dict "@id" $orgID)
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+      "isPartOf" (dict "@id" $siteID)
+  -}}
+<script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+{{- end }}
+
+{{/* ---------- 3c. Person (página de autor) ---------- */}}
+{{- if and .File (eq .File.BaseFileName "sobre-mi") }}
+  {{- $person := dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "@id" (printf "%s#person" .Permalink)
+      "name" $authorName
+      "url" .Permalink
+      "jobTitle" "Fundador de LauTea · Tea blender"
+      "description" (or .Description (.Summary | plainify))
+      "knowsAbout" (slice "Tea blending" "Té en hebras" "Cata de té" "Ceremonia del té")
+      "worksFor" (dict "@id" $orgID)
+      "homeLocation" (dict "@type" "Place" "name" "Quilmes, Buenos Aires, Argentina")
+      "sameAs" $sameAs
+  -}}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{- end }}

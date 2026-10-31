@@ -1,0 +1,8 @@
+[notFoundTitle]
+other = "404 - Página no encontrada"
+
+[notFoundText]
+other = "Esa página no existe. Podés intentar de nuevo:"
+
+[notFoundLink]
+other = "Volver al inicio"

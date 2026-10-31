@@ -1,0 +1,170 @@
+/* ==========================================================================
+   LauTea — estilos propios de artículos y páginas de contenido
+   Sobreescribe parcialmente el tema. Paleta y tipografías de marca:
+     verde   #5e8f3d   crema  #fff6d5
+     titulares: Oswald   ·   cuerpo: Latin Modern
+   ========================================================================== */
+
+/* --- Artículos: el cuerpo grande del tema queda incómodo para leer --- */
+.page-template .post-content p,
+.page-template .post-content li {
+  font-size: 1.9rem;
+  line-height: 1.75;
+}
+
+/* El tema fuerza p a 25px en single.html; lo normalizamos */
+.page-template .post-content p {
+  font-size: 1.9rem;
+  margin: 1.2em 0;
+}
+
+/* --- Firma de autor --- */
+.byline {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 2.5rem !important;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1.2rem;
+}
+
+/* --- Titulares con la tipografía de marca --- */
+.page-template h2,
+.page-template h3 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-indent: 0;
+}
+
+.page-template h2 { font-size: 2.8rem; margin-top: 2.2rem; }
+.page-template h3 { font-size: 2.2rem; margin-top: 1.8rem; }
+
+/* --- Tablas dentro del verde/crema de marca --- */
+.page-template table {
+  font-size: 1.7rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.page-template thead th {
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--section-light-text-color);
+}
+
+.page-template tbody > tr:nth-child(even) {
+  background-color: rgba(94, 143, 61, 0.12);
+  background-blend-mode: normal;
+}
+
+/* --- El highlight del mark, en el verde de marca --- */
+.page-template mark {
+  background-color: var(--highlight);
+  color: var(--highlight-contrast);
+  filter: none;
+  padding: 0 0.2em;
+  border-radius: 3px;
+}
+
+/* --- Enlaces del cuerpo: subrayados para que se lean como enlaces --- */
+.page-template .post-content a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.page-template .post-content a:hover {
+  color: var(--highlight);
+}
+
+/* --- Cita final, como bloque de marca --- */
+.page-template blockquote {
+  border-left: 4px solid var(--highlight);
+  background-color: rgba(94, 143, 61, 0.07);
+  border-radius: 0 8px 8px 0;
+  margin-left: 0;
+  padding: 0.6em 1.2em;
+  font-style: italic;
+}
+
+/* --- Índice de artículos (no usado aún, listo para cuando sumen más) --- */
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.article-list li {
+  margin-left: 0;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid rgba(94, 143, 61, 0.3);
+}
+
+.article-list a {
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.article-list a:hover {
+  color: var(--highlight);
+  text-decoration: underline;
+}
+
+.article-list .article-desc {
+  display: block;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  opacity: 0.85;
+  margin-top: 0.4rem;
+}
+
+/* --- Botón grande reutilizable (página de enlaces) --- */
+.lt-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+.lt-link {
+  display: block;
+  padding: 1.4rem 1.8rem;
+  border: 2px solid var(--section-light-text-color);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all ease 0.25s;
+}
+
+.lt-link:hover {
+  background-color: var(--highlight);
+  border-color: var(--highlight);
+  color: var(--highlight-contrast);
+  transform: translateY(-2px);
+}
+
+.lt-link .lt-link-title {
+  display: block;
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.lt-link .lt-link-sub {
+  display: block;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  margin-top: 0.2rem;
+}
+
+/* --- En secciones oscuras invertimos el contraste del botón --- */
+.post-holder.dark .lt-link,
+.post-holder.dark .lt-link:hover {
+  color: var(--section-light-bg-color);
+}

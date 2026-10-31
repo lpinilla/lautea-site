@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://example.com/en/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://example.com/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://example.com/en/"
-                />
-  </url>
-</urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>https://lautea.com.ar/en/</loc><lastmod>2026-10-31T00:00:00+00:00</lastmod><xhtml:link rel="alternate" hreflang="es" href="https://lautea.com.ar/"/><xhtml:link rel="alternate" hreflang="en" href="https://lautea.com.ar/en/"/></url><url><loc>https://lautea.com.ar/en/about/</loc><lastmod>2026-10-31T00:00:00+00:00</lastmod><xhtml:link rel="alternate" hreflang="es" href="https://lautea.com.ar/sobre-mi/"/><xhtml:link rel="alternate" hreflang="en" href="https://lautea.com.ar/en/about/"/></url><url><loc>https://lautea.com.ar/en/how-to-brew-green-tea/</loc><lastmod>2026-10-31T00:00:00+00:00</lastmod><xhtml:link rel="alternate" hreflang="es" href="https://lautea.com.ar/como-preparar-te-verde/"/><xhtml:link rel="alternate" hreflang="en" href="https://lautea.com.ar/en/how-to-brew-green-tea/"/></url><url><loc>https://lautea.com.ar/en/loose-leaf-vs-tea-bags/</loc><lastmod>2026-10-31T00:00:00+00:00</lastmod><xhtml:link rel="alternate" hreflang="es" href="https://lautea.com.ar/hebras-vs-saquito/"/><xhtml:link rel="alternate" hreflang="en" href="https://lautea.com.ar/en/loose-leaf-vs-tea-bags/"/></url><url><loc>https://lautea.com.ar/en/links/</loc><xhtml:link rel="alternate" hreflang="es" href="https://lautea.com.ar/links/"/><xhtml:link rel="alternate" hreflang="en" href="https://lautea.com.ar/en/links/"/></url></urlset>

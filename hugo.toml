@@ -1,4 +1,4 @@
-baseURL = "https://example.com"
+baseURL = "https://lautea.com.ar/"
 
 # This is a "one page"-website, so we do not need these kinds of pages...
 disableKinds = ["section", "taxonomy", "term", "RSS", "robotsTXT"]
@@ -118,6 +118,18 @@ enableEmoji = true
     weight = 20
     contentDir = "content/en"
     languageName = "English"
+
+    # Sin esto, /en/ hereda la description en español de [params].
+    # Los motores de IA pesan el idioma de la consulta: la versión en inglés
+    # es una ventaja real sólo si está completa.
+    [languages.en.params]
+      title = "LauTea"
+      description = "Argentine loose leaf tea and author blends. We invite you to rediscover yourself and the path of tea in every cup 🌱🍵"
+      [languages.en.params.meta]
+        keywords = "looseleaftea,teablend,teablending,argentinetea,tea,teaceremony,blends"
+      [languages.en.params.footer]
+        showContactIcons = false
+        showFooterLinks = false
 
 [services]
   [services.googleAnalytics]

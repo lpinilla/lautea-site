@@ -56,6 +56,39 @@ jobs:
           hugo \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Notify IndexNow
+        # Avisa a Bing/Yandex qué URLs cambiaron, para reindexarlas antes.
+        # La clave no es un secreto: IndexNow la exige publicada en una URL
+        # pública (/<clave>.txt). Acá se lee del archivo en static/, que es la
+        # única fuente de verdad.
+        # No es bloqueante: si IndexNow falla, el deploy sigue igual.
+        continue-on-error: true
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          set -euo pipefail
+          keyfile=$(ls static/*.txt 2>/dev/null | head -1 || true)
+          if [ -z "$keyfile" ]; then
+            echo "No hay archivo de clave IndexNow en static/; se omite."
+            exit 0
+          fi
+          key=$(tr -d '[:space:]' < "$keyfile")
+          host=$(printf '%s' "$BASE_URL" | sed -E 's#^https?://##; s#/.*$##')
+          urls=$(grep -rhoP '(?<=<loc>)[^<]+(?=</loc>)' public/sitemap.xml public/*/sitemap.xml 2>/dev/null \
+                 | sort -u \
+                 | grep -v '/sitemap' \
+                 | python3 -c 'import sys,json; print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
+          if [ -z "$urls" ] || [ "$urls" = "[]" ]; then
+            echo "No se encontraron URLs en los sitemaps; se omite IndexNow."
+            exit 0
+          fi
+          echo "Host: $host"
+          echo "URLs a notificar: $urls"
+          curl --silent --show-error --fail-with-body \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"${host}\",\"key\":\"${key}\",\"keyLocation\":\"${BASE_URL}/${key}.txt\",\"urlList\":${urls}}"
+          echo "IndexNow notificado."
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
