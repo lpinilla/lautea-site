@@ -1,0 +1,5 @@
+# Artefactos de herramientas locales (capturas de Playwright, logs, snapshots)
+.playwright-mcp/
+
+# Caché de procesamiento de imágenes de Hugo
+resources/_gen/
