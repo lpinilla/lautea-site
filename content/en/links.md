@@ -1,6 +1,6 @@
 ---
-title: "Start here"
-description: "All LauTea links in one place: brewing guides, our product, and where to find us."
+title: "Start here: all of LauTea's tea guides in one place"
+description: "Every LauTea link in one place: brewing guides, the loose leaf vs. tea bags comparison, our 3-in-1 hourglass timer, and where to find us."
 header_image: "images/fondo1.png"
 ---
 
@@ -14,7 +14,7 @@ header_image: "images/fondo1.png"
     <span class="lt-link-title">Loose leaf vs. tea bags</span>
     <span class="lt-link-sub">What actually changes in your cup 🍃</span>
   </a>
-  <a class="lt-link" href="https://www.mercadolibre.com.ar/">
+  <a class="lt-link" href="/en/tea-hourglass/">
     <span class="lt-link-title">Our 3-in-1 hourglass</span>
     <span class="lt-link-sub">The companion for every infusion ⏳</span>
   </a>
@@ -22,7 +22,7 @@ header_image: "images/fondo1.png"
     <span class="lt-link-title">Our story</span>
     <span class="lt-link-sub">Why tea, and why since 2023 ✨</span>
   </a>
-  <a class="lt-link" href="/en/#nuestras-redes">
+  <a class="lt-link" href="/en/#our-socials">
     <span class="lt-link-title">Our socials</span>
     <span class="lt-link-sub">Instagram, TikTok, YouTube and Pinterest 📲</span>
   </a>

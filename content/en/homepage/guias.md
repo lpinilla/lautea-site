@@ -14,6 +14,10 @@ header_menu: true
     <a href="/en/loose-leaf-vs-tea-bags/">Loose leaf vs. tea bags: what actually changes</a>
     <span class="article-desc">Not a matter of taste: the leaf changes, what it releases changes, and how far it goes.</span>
   </li>
+  <li>
+    <a href="/en/tea-hourglass/">3-in-1 tea hourglass</a>
+    <span class="article-desc">Our 2, 3 and 5 minute timer. A practical gift for someone who loves tea.</span>
+  </li>
 </ul>
 {{< /rawhtml >}}
 

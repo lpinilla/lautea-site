@@ -1,5 +1,5 @@
 ---
-title: "About me"
+title: "About Lautaro Pinilla, tea blender at LauTea"
 description: "I'm Lautaro Pinilla, founder of LauTea. I started drinking tea for health reasons and ended up making author blends in Quilmes, Buenos Aires."
 type: articulos
 translationKey: "about"
@@ -36,7 +36,7 @@ I write the articles on this site myself. If I cannot back something with a sour
 
 ## Where to find me
 
-Everything I publish is on [our socials](/#nuestras-redes), and the longer articles live here, on the site.
+Everything I publish is on [our socials](/en/#our-socials), and the longer articles live here, on the site.
 
 ---
 

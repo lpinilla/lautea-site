@@ -17,7 +17,41 @@
         {{ end }}
       </header>
       <h1 class="post-title">{{ .Title }}</h1>
+      {{/* Firma de autor y fecha visible. Google pide bylines que lleven a una
+          pagina de autor real, y las citas de IA favorecen paginas con fecha
+          de actualizacion comprobable: no alcanza con declararla en el
+          JSON-LD, tiene que verse en la pagina. */}}
+      {{ if eq .Type "articulos" }}
+      {{/* El enlace va a la pagina de autor DEL IDIOMA ACTUAL. Se busca por
+          translationKey porque la ruta difiere (/sobre-mi/ en ES, /about/ en
+          EN): buscar por ruta fija devolvia vacio en ingles. */}}
+      {{ $authorURL := "" }}
+      {{ range where .Site.RegularPages "Params.translationKey" "about" }}
+        {{ $authorURL = .RelPermalink }}
+      {{ end }}
+      <p class="byline">
+        {{ i18n "bylinePrefix" | default "Por" }}
+        {{ with $authorURL }}<a href="{{ . }}">{{ end }}{{ $.Params.author | default "Lautaro Pinilla" }}{{ if $authorURL }}</a>{{ end }}
+        {{- with .Lastmod }} · {{ i18n "bylineUpdated" | default "Actualizado el" }} <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2/1/2006" }}</time>{{ end }}
+      </p>
+      {{ end }}
       <section class="post-content">
+        {{/* Grafico propio del articulo. Se procesa con Hugo Pipes (mismo
+            pipeline que el banner: webp + lazy) en vez de servir el PNG
+            crudo, y se marca loading="lazy" + width/height explicitos para
+            no aportar CLS. */}}
+        {{ with .Params.image }}
+          {{ with resources.Get . }}
+          {{ $opts := $.Site.Params.image_options | default "webp q90 lanczos photo" }}
+          {{ with .Resize (printf "1200x %s" $opts) }}
+          <figure class="article-figure">
+            <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
+                 alt="{{ $.Params.image_alt | default $.Title }}"
+                 loading="lazy" decoding="async" />
+          </figure>
+          {{ end }}
+          {{ end }}
+        {{ end }}
         {{ .Content }}
       </section>
     </article>

@@ -8,6 +8,8 @@ date: 2026-10-31
 slug: "hebras-vs-saquito"
 keywords: "té en hebras vs saquito, té suelto, hoja entera, microplásticos saquito de té, té en hebras argentina"
 header_menu: false
+image: "images/diagram-hebras-vs-saquito.png"
+image_alt: "Comparación de cuántas infusiones rinde el mismo puñado de té en hebras (tres) y en saquito (una)."
 ---
 
 Hay una idea muy extendida de que el té en saquito y el té en hebras son "lo mismo, más cómodo". No lo son. Cambia la materia prima, cambia lo que llega al agua y cambia cuánto te rinde. Vale la pena entender por qué, más allá del romanticismo.
@@ -32,7 +34,7 @@ Muchos saquitos comerciales no son de papel: están sellados con plásticos, y a
 
 La investigación sobre cuánto se desprende y qué significa para la salud todavía está abierta, y las cifras que circulan varían mucho según el estudio y el tipo de saquito. No hace falta exagerar el riesgo para sacar una conclusión simple y sólida: **el té en hebras elimina la variable por completo**, porque la única cosa que entra en tu taza es la hoja.
 
-Si te interesa el tema a fondo, hay trabajos académicos que midieron la liberación de partículas en distintos tipos de saquito. Vale la pena leerlos antes de sacar conclusiones propias, porque los titulares suelen simplificar de más un asunto que es más matizado.
+Un dato que sí conviene retener: la diferencia no está en "plástico sí o no", sino en cómo está sellado el sobre. Los de **papel sin sellar** y los de **fibra vegetal** no aportan plástico al agua; los de **malla de PLA, nylon o PET** son los que se estudian por liberación de partículas. Si el sobre está termosellado y se ve translúcido, casi siempre es malla sintética.
 
 ## Lo que sí conviene tener en cuenta
 

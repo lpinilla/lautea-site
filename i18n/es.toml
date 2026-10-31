@@ -6,3 +6,12 @@ other = "Esa página no existe. Podés intentar de nuevo:"
 
 [notFoundLink]
 other = "Volver al inicio"
+
+[bylinePrefix]
+other = "Por"
+
+[bylineUpdated]
+other = "Actualizado el"
+
+[allGuidesLink]
+other = "Todas las guías"

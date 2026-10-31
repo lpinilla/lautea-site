@@ -17,6 +17,15 @@
     <hr />
     {{ end }}
 
+    {{/* Enlace a la pagina indice (/links/). Antes esa pagina era un
+        huerfano: no la enlazaba nadie en ningun idioma, asi que solo se
+        llegaba por la bio de Instagram. Es la que reune todas las guias, o
+        sea justo la que conviene que los buscadores encuentren. relLangURL
+        resuelve /links/ y /en/links/ segun el idioma. */}}
+    <section class="links">
+      <a href="{{ "/links/" | relLangURL }}">{{ i18n "allGuidesLink" | default "Todas las guías" }}</a>
+    </section>
+
     {{ if ne .Site.Params.footer.showContactIcons false }}
       <section class="icons">
         {{ range .Site.Params.contacts }}

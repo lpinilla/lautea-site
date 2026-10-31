@@ -93,6 +93,23 @@
   font-style: italic;
 }
 
+/* --- Gráfico del artículo (figure con la imagen propia) --- */
+/* El tema fuerza `img { padding-top: 50px }` en single.html; acá se
+   neutraliza para que el gráfico quede pegado a su epígrafe. */
+.article-figure {
+  margin: 2.4rem 0;
+  padding: 0;
+}
+
+.article-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding-top: 0 !important;
+  border-radius: 8px;
+  border: 1px solid rgba(94, 143, 61, 0.25);
+}
+
 /* --- Índice de artículos (no usado aún, listo para cuando sumen más) --- */
 .article-list {
   list-style: none;

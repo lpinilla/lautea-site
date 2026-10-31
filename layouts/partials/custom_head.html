@@ -17,16 +17,30 @@
   y el JSON queda inválido.
 */ -}}
 
-{{- $defaultLang := .Site.Home.Language.Lang -}}
+{{/* OJO: `.Site.Home.Language.Lang` devuelve el idioma del sitio ACTUAL, no el
+    idioma por defecto del proyecto. En el sitio EN eso valía "en", y el
+    x-default terminaba apuntando a la URL inglesa desde la página inglesa y a
+    la española desde la española: inconsistente. `.Sites.Default` sí apunta
+    siempre al idioma configurado en `defaultContentLanguage`. */}}
+{{- $defaultLang := .Sites.Default.Language.Lang -}}
 
 {{/* ---------- 0. CSS propio de LauTea ---------- */}}
-{{/* Se carga acá (y no editando el tema) porque el tema es un submódulo:
-    así nuestras reglas sobreviven a las actualizaciones del tema. */}}
+{{/* Se carga acá (y no editando el CSS del tema) para que nuestras reglas
+    queden separadas de las del tema: el tema está vendorizado (copiado dentro
+    de themes/hugo-scroll, no es un submódulo), así que si algún día se
+    actualiza, se reemplaza esa carpeta y este archivo no se toca. */}}
 {{- $lauteaCSS := resources.Get "css/lautea.css" | resources.Minify | resources.Fingerprint -}}
 <link rel="stylesheet" href="{{ $lauteaCSS.RelPermalink }}" integrity="{{ $lauteaCSS.Data.Integrity }}" />
 
 {{/* ---------- 1. Canonical ---------- */}}
 <link rel="canonical" href="{{ .Permalink }}" />
+
+{{/* Páginas que no deben aparecer en buscadores ni en IA: se marcan con
+    `unlisted: true` en el front matter (ej: la página del QR del producto,
+    a la que se llega solo escaneando el código). */}}
+{{- if .Params.unlisted }}
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+{{- end }}
 
 {{/* ---------- 2. hreflang ---------- */}}
 {{- if .IsTranslated -}}
@@ -51,10 +65,69 @@
 {{- end -}}
 {{- $logoURL := "" -}}
 {{- with resources.Get .Site.Params.favicon -}}{{- $logoURL = .Permalink -}}{{- end -}}
-{{- $orgID := printf "%s#organization" .Site.Home.Permalink -}}
-{{- $siteID := printf "%s#website" .Site.Home.Permalink -}}
 {{- $authorName := "Lautaro Pinilla" -}}
-{{- $authorURL := "sobre-mi/" | absURL -}}
+{{/* La pagina de autor se identifica por translationKey, no por nombre de
+    archivo: el slug cambia segun el idioma (/sobre-mi/ en ES, /about/ en EN),
+    asi que comparar contra "sobre-mi" dejaba la version en ingles sin datos
+    de autor y con enlaces rotos. */}}
+{{- $authorKey := "about" -}}
+{{- $isAuthorPage := eq .Params.translationKey $authorKey -}}
+{{- $authorURL := "" -}}
+{{/* Se busca la pagina de autor del idioma actual por translationKey y no por
+    ruta: la ruta cambia (/sobre-mi/ en ES, /about/ en EN). */}}
+{{- range where .Site.RegularPages "Params.translationKey" $authorKey -}}
+  {{- $authorURL = .Permalink -}}
+{{- end -}}
+
+{{/* Google exige `image` en Article para poder mostrar el resultado enriquecido.
+    Se usa la imagen propia del articulo (`image:` en el front matter) si
+    existe; si no, cae al logo. Antes esto era siempre el logo porque ningun
+    articulo tenia imagen, que es justo lo que Google pide evitar: la imagen
+    declarada conviene que sea la del contenido. El proceso pasa por Hugo
+    Pipes para que el schema apunte al webp optimizado y no al PNG original. */}}
+{{- $articleImage := "" -}}
+{{- with .Params.image -}}
+  {{- with resources.Get . -}}
+    {{- $opts := site.Params.image_options | default "webp q90 lanczos photo" -}}
+    {{- with .Resize (printf "1200x %s" $opts) -}}{{- $articleImage = .Permalink -}}{{- end -}}
+  {{- else -}}
+    {{- $articleImage = . | absURL -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $articleImage -}}{{- $articleImage = $logoURL -}}{{- end -}}
+
+{{/* Organization y WebSite son cosas distintas y se tratan distinto:
+
+    - Organization es UNA entidad real: Instagram, el sitio ES y el sitio EN
+      son la misma marca. Su @id se ancla siempre a la home del idioma por
+      defecto y su contenido es identico en todos los idiomas. Si cada idioma
+      emitiera su propio @id (...#organization y /en/#organization), un motor
+      veria DOS organizaciones y el `publisher` en ingles no resolveria contra
+      la espanola. Por eso `knowsAbout` NO se traduce: describe a la misma
+      entidad y no puede decir cosas distintas segun la pagina.
+    - WebSite SI es por idioma: cada uno es un sitio con su propio
+      `inLanguage`, asi que lleva su propio @id. */}}
+{{- $orgHome := .Sites.Default.Home.Permalink -}}
+{{- $orgID := printf "%s#organization" $orgHome -}}
+{{- $siteID := printf "%s#website" .Site.Home.Permalink -}}
+{{- $orgKnows := slice "Tea blending" "Té en hebras" "Té suelto" "Ceremonia del té" "Blends de té" -}}
+{{/* El founder vive en la Organization, que es unica y esta en espanol: su
+    URL tiene que ser la de la pagina de autor en espanol, no la del idioma
+    en el que se este renderizando. */}}
+{{- $authorHomeURL := "" -}}
+{{- range where .Sites.Default.RegularPages "Params.translationKey" "about" -}}
+  {{- $authorHomeURL = .Permalink -}}
+{{- end -}}
+
+{{/* Textos que SI son del idioma actual: la pagina de autor es contenido
+    traducido, no una entidad de marca. Dejar "Cata de té" en la version en
+    ingles le dice a un motor que la pagina esta a medio traducir. */}}
+{{- $personTitle := "Founder of LauTea · Tea blender" -}}
+{{- $personKnows := slice "Tea blending" "Loose leaf tea" "Tea tasting" "Tea ceremony" -}}
+{{- if eq .Language.Lang $defaultLang -}}
+  {{- $personTitle = "Fundador de LauTea · Tea blender" -}}
+  {{- $personKnows = slice "Tea blending" "Té en hebras" "Cata de té" "Ceremonia del té" -}}
+{{- end -}}
 
 {{/* ---------- 3a. Organization + WebSite (home) ---------- */}}
 {{- if .IsHome }}
@@ -64,14 +137,14 @@
       "@id" $orgID
       "name" "LauTea"
       "alternateName" "LauTea Blends"
-      "url" .Site.Home.Permalink
+      "url" $orgHome
       "logo" $logoURL
       "image" $logoURL
-      "description" (or .Description .Site.Params.description)
+      "description" (.Sites.Default.Params.description | default .Site.Params.description)
       "foundingDate" "2023"
       "foundingLocation" (dict "@type" "Place" "name" "Quilmes, Buenos Aires, Argentina")
-      "founder" (dict "@type" "Person" "name" $authorName "url" $authorURL)
-      "knowsAbout" (slice "Tea blending" "Té en hebras" "Té suelto" "Ceremonia del té" "Blends de té")
+      "founder" (dict "@type" "Person" "name" $authorName "url" $authorHomeURL)
+      "knowsAbout" $orgKnows
       "areaServed" (dict "@type" "Country" "name" "Argentina")
       "sameAs" $sameAs
   -}}
@@ -90,12 +163,13 @@
 {{- end }}
 
 {{/* ---------- 3b. Article (páginas del tipo articulos) ---------- */}}
-{{- if and (not .IsHome) (eq .Type "articulos") (ne .File.BaseFileName "sobre-mi") }}
+{{- if and (not .IsHome) (eq .Type "articulos") (not $isAuthorPage) }}
   {{- $article := dict
       "@context" "https://schema.org"
       "@type" "Article"
       "headline" .Title
       "description" (or .Description (.Summary | plainify))
+      "image" $articleImage
       "inLanguage" .Language.Lang
       "datePublished" (.Date.Format "2006-01-02")
       "dateModified" (.Lastmod.Format "2006-01-02")
@@ -104,23 +178,69 @@
       "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
       "isPartOf" (dict "@id" $siteID)
   -}}
+  {{- with .Params.keywords }}{{ $article = merge $article (dict "keywords" .) }}{{ end }}
+  {{- with .WordCount }}{{ $article = merge $article (dict "wordCount" .) }}{{ end }}
 <script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
 {{- end }}
 
 {{/* ---------- 3c. Person (página de autor) ---------- */}}
-{{- if and .File (eq .File.BaseFileName "sobre-mi") }}
+{{- if $isAuthorPage }}
   {{- $person := dict
       "@context" "https://schema.org"
       "@type" "Person"
       "@id" (printf "%s#person" .Permalink)
       "name" $authorName
       "url" .Permalink
-      "jobTitle" "Fundador de LauTea · Tea blender"
+      "jobTitle" $personTitle
       "description" (or .Description (.Summary | plainify))
-      "knowsAbout" (slice "Tea blending" "Té en hebras" "Cata de té" "Ceremonia del té")
+      "knowsAbout" $personKnows
       "worksFor" (dict "@id" $orgID)
       "homeLocation" (dict "@type" "Place" "name" "Quilmes, Buenos Aires, Argentina")
       "sameAs" $sameAs
   -}}
 <script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{- end }}
+
+{{/* ---------- 3d. Product (páginas con datos de producto) ----------
+    Product es el ÚNICO tipo de schema con efecto medido en citas de IA
+    (61,7% vs 41,6%, y el efecto es más fuerte en dominios de autoridad baja
+    como este). Los datos salen del front matter `product:` de la página;
+    si no están, no se emite el bloque (nunca inventar precio ni rating).
+    `aggregateRating` solo se emite si está declarado: un rating no visible
+    en la página es una violación de las guías de Google. */}}
+{{- with .Params.product }}
+  {{- $product := dict
+      "@context" "https://schema.org"
+      "@type" "Product"
+      "name" .name
+      "description" .description
+      "category" (.category | default "Té")
+      "brand" (dict "@type" "Brand" "name" "LauTea")
+      "manufacturer" (dict "@id" $orgID)
+      "url" $.Permalink
+      "inLanguage" $.Language.Lang
+  -}}
+  {{- with .image }}{{ $product = merge $product (dict "image" .) }}{{ end }}
+  {{- with .sku }}{{ $product = merge $product (dict "sku" .) }}{{ end }}
+  {{- with .mpn }}{{ $product = merge $product (dict "mpn" .) }}{{ end }}
+  {{- with .material }}{{ $product = merge $product (dict "material" .) }}{{ end }}
+  {{- with .color }}{{ $product = merge $product (dict "color" .) }}{{ end }}
+  {{- with .additionalProperty }}
+    {{- $props := slice }}
+    {{- range . }}
+      {{- $props = $props | append (dict "@type" "PropertyValue" "name" .name "value" .value) }}
+    {{- end }}
+    {{- $product = merge $product (dict "additionalProperty" $props) }}
+  {{- end }}
+  {{- with .offers }}
+    {{- $offer := dict "@type" "Offer" "url" .url "availability" (.availability | default "https://schema.org/InStock") "priceCurrency" (.priceCurrency | default "ARS") }}
+    {{- with .price }}{{ $offer = merge $offer (dict "price" .) }}{{ end }}
+    {{- with .itemCondition }}{{ $offer = merge $offer (dict "itemCondition" .) }}{{ end }}
+    {{- $product = merge $product (dict "offers" $offer) }}
+  {{- end }}
+  {{- with .rating }}
+<script type="application/ld+json">{{ merge $product (dict "aggregateRating" (dict "@type" "AggregateRating" "ratingValue" .value "reviewCount" .count)) | jsonify | safeJS }}</script>
+  {{- else }}
+<script type="application/ld+json">{{ $product | jsonify | safeJS }}</script>
+  {{- end }}
 {{- end }}

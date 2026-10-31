@@ -1,6 +1,9 @@
 baseURL = "https://lautea.com.ar/"
 
-# This is a "one page"-website, so we do not need these kinds of pages...
+# El sitio es una home "one page" más las páginas de artículo sueltas, así que
+# no generamos listados de sección, taxonomías ni RSS. `robotsTXT` queda fuera
+# de disableKinds a propósito: así Hugo no genera el suyo y manda el
+# static/robots.txt que escribimos a mano.
 disableKinds = ["section", "taxonomy", "term", "RSS", "robotsTXT"]
 
 defaultContentLanguage = "es"
@@ -14,7 +17,7 @@ title = "LauTea"
 googleAnalytics = "G-GGDYGPBNGL"
 
 # In order to add version information in the page's footer set to true.
-# enableGitInfo = true
+enableGitInfo = true
 
 # enable emoji processing in Markdown (valid only for pure markdown content)
 enableEmoji = true
@@ -25,11 +28,16 @@ enableEmoji = true
     # The path to your "favicon". This should be a square (at least 32px x 32px) png-file.
     favicon = "images/logo.png"
 
-    # These "images" are used for the structured data templates. This will show up, when
-    # services like Twitter or Slack want to generate a preview of a link to your site.
-    # See https://gohugo.io/templates/internal#twitter-cards and https://gohugo.io/templates/internal#open-graph.
+    # These "images" are used by Hugo's internal opengraph and Twitter Card
+    # templates, so this is what Slack, WhatsApp, X or LinkedIn show when
+    # someone shares a link.
+    # OJO con el formato: la convención de Open Graph es 1200x630 (1.91:1).
+    # Acá estaba `images/logo.png`, que es un cuadrado de 1209x1209: cada red
+    # lo recortaba a su antojo y la marca aparecía cortada. `og-default.png`
+    # está generada en 1200x630 exactos, con la tipografía y la paleta reales.
+    # See https://gohugo.io/templates/internal#open-graph.
     # NOT the actual header background image, go to _index.md instead
-    images = ["images/logo.png"]
+    images = ["images/og-default.png"]
 
     # When set true, it creates a visual guard (partially transparent rounded box), preventing non-ideal background images from interfering with title/description headings
     # Ideal images are homogenous around the centre and contrasting to the text.
@@ -55,10 +63,6 @@ enableEmoji = true
     # A "copyright"-line to be added at the bottom of the page.
     # Hint: Plain HTML is supported in here as well. So you may e.g. add a link to your legal imprint-page.
 #    copyright = "© Jane Doe"
-
-    # This theme will, by default, inject a design-by-line at the bottom of the page.
-    # You can turn it off, but we would really appreciate if you don’t :-)
-    hidedesignbyline = false
 
     # The sections of the home page alternate styling. Mark invert as true to swap the styling of the sections
     invertSectionColors = false

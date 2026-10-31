@@ -1,4 +1,10 @@
 ---
+# El <title> de la home. Sin esto hereda `title` de hugo.toml, que es solo
+# "LauTea": seis caracteres que no le dicen nada a un buscador ni a un motor
+# de IA sobre qué vende el sitio.
+title: "LauTea — Té en hebras y blends de autor en Argentina"
+description: "Té en hebras y blends de autor hechos en Argentina. Guías de preparación, comparativas honestas y el reloj de arena 3 en 1 para que el té no salga amargo."
+
 # Striking header background image, Ideal images are homogenous around the centre and contrasting to the text. Non-ideal images can use `title_guard`
 header_image: "images/test_banner_clean.png"
 header_logo: "images/logo.png"

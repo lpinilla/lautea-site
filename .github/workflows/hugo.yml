@@ -31,7 +31,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.128.0
+      # Tiene que coincidir con la version local: si el CI compila con otra
+      # version, lo que vos verificas en tu maquina no es lo que se publica.
+      HUGO_VERSION: 0.154.5
     steps:
       - name: Install Hugo CLI
         run: |
@@ -43,6 +45,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          # Sin esto el clon es shallow y Hugo no puede leer la historia de
+          # git, asi que `enableGitInfo` queda sin efecto y dateModified cae
+          # al valor del front matter (una fecha que nadie actualiza).
+          fetch-depth: 0
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

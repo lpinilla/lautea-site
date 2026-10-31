@@ -1,4 +1,10 @@
 ---
+# The homepage <title>. Without this it inherits `title` from hugo.toml, which
+# is just "LauTea": six characters that tell a search engine or an AI engine
+# nothing about what the site sells.
+title: "LauTea — Argentine loose leaf tea and author blends"
+description: "Argentine loose leaf tea and author blends. Brewing guides, honest comparisons, and the 3-in-1 hourglass timer so your tea never turns bitter."
+
 # Striking header background image, Ideal images are homogenous around the centre and contrasting to the text. Non-ideal images can use `title_guard`
 header_image: "images/test_banner_clean.png"
 header_logo: "images/logo.png"

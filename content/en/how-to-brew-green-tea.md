@@ -8,6 +8,8 @@ date: 2026-10-31
 slug: "how-to-brew-green-tea"
 keywords: "how to brew green tea, green tea temperature, green tea steeping time, loose leaf tea, bitter green tea"
 header_menu: false
+image: "images/diagram-green-tea.png"
+image_alt: "Chart showing the water temperature and steeping time for each green tea type: sencha, gunpowder, jasmine and matcha."
 ---
 
 Almost everyone who says "I don't like green tea" actually drank badly brewed green tea. It is the easiest infusion to ruin and the fastest to turn bitter. The good news: two numbers fix it.
@@ -53,4 +55,4 @@ That same sensitivity is why, when you brew it well, the sweet, vegetal flavour 
 
 ---
 
-*If you want to try it with whole leaf, at LauTea we make author blends with loose leaves. [Get in touch](/#nuestras-redes) and we will tell you where to start.*
+*If you want to try it with whole leaf, at LauTea we make author blends with loose leaves. [Get in touch](/en/#our-socials) and we will tell you where to start.*

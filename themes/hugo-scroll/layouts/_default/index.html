@@ -77,7 +77,19 @@
 	{{ end }}
 
         <div id="site-head-content" class="inner">
-	    {{ with resources.Get .Params.header_logo }}<img id="blog-logo" alt="" src="{{ .RelPermalink }}" />{{ end }}
+	    {{/* La fuente es un PNG de 1209x1209 y ~96 KB, pero en el header se
+	        muestra a 250px de alto como maximo (ver #blog-logo en theme.scss).
+	        Servir el original castiga el LCP: es la imagen mas grande del
+	        primer pantallazo. Lo pasamos por Hugo Pipes a un WebP de 500px
+	        (2x de 250, suficiente para pantallas retina) y con width/height
+	        explicitos para que el navegador reserve el espacio y no haya
+	        salto de layout. El PNG original sigue existiendo para el
+	        favicon y para el logo de Organization en el schema. */}}
+	    {{ with resources.Get .Params.header_logo }}
+	      {{ $logo := . }}
+	      {{ with .Resize (printf "500x %s" (site.Params.image_options | default "webp q90 lanczos photo")) }}{{ $logo = . }}{{ end }}
+	      <img id="blog-logo" alt="" width="{{ $logo.Width }}" height="{{ $logo.Height }}" src="{{ $logo.RelPermalink }}" />
+	    {{ end }}
 
             {{ if .Site.Params.title_guard }}<div class="title-and-description-guard">{{ end }}
               {{ with .Params.header_headline }}<h1 class="blog-title">{{ . | safeHTML }}</h1>{{ end }}

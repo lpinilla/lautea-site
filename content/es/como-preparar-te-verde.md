@@ -8,6 +8,8 @@ date: 2026-10-31
 slug: "como-preparar-te-verde"
 keywords: "cómo preparar té verde, temperatura té verde, tiempo de infusión té verde, té verde amargo, té en hebras"
 header_menu: false
+image: "images/diagram-te-verde.png"
+image_alt: "Diagrama con la temperatura y el tiempo de infusión de cada tipo de té verde: sencha, gunpowder, jazmín y matcha."
 ---
 
 Casi todo el mundo que dice "no me gusta el té verde" tomó, en realidad, té verde mal preparado. Es la infusión más fácil de arruinar y la que más rápido se pasa de amarga. La buena noticia: se arregla con dos números.

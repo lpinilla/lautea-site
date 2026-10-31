@@ -1,6 +1,6 @@
 ---
-title: "Empezá por acá"
-description: "Todos los links de LauTea en un solo lugar: guías de preparación, nuestro producto y dónde encontrarnos."
+title: "Empezá por acá: todas las guías de té de LauTea"
+description: "Todos los links de LauTea en un solo lugar: guías para preparar té verde, la comparación entre hebras y saquito, nuestro reloj de arena 3 en 1 y dónde encontrarnos."
 header_image: "images/fondo1.png"
 ---
 
@@ -14,7 +14,7 @@ header_image: "images/fondo1.png"
     <span class="lt-link-title">Hebras vs. saquito</span>
     <span class="lt-link-sub">Qué cambia de verdad en tu taza 🍃</span>
   </a>
-  <a class="lt-link" href="https://www.mercadolibre.com.ar/">
+  <a class="lt-link" href="/reloj-de-arena/">
     <span class="lt-link-title">Nuestro reloj de arena 3 en 1</span>
     <span class="lt-link-sub">El compañero de cada infusión ⏳</span>
   </a>

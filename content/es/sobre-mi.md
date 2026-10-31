@@ -1,5 +1,5 @@
 ---
-title: "Sobre mí"
+title: "Sobre mí: Lautaro Pinilla, tea blender de LauTea"
 description: "Soy Lautaro Pinilla, fundador de LauTea. Empecé a tomar té por un tema de salud y terminé armando blends de autor en Quilmes, Buenos Aires."
 type: articulos
 translationKey: "about"

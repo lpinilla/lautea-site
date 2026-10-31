@@ -8,6 +8,8 @@ date: 2026-10-31
 slug: "loose-leaf-vs-tea-bags"
 keywords: "loose leaf tea vs tea bags, whole leaf tea, tea bag microplastics, argentine tea"
 header_menu: false
+image: "images/diagram-loose-leaf-vs-bags.png"
+image_alt: "Comparison of how many infusions the same pinch of tea gives as whole leaf (three) and in a bag (one)."
 ---
 
 There is a widespread idea that loose leaf tea and tea bags are "the same thing, just more convenient". They are not. The raw material changes, what reaches the water changes, and how far it goes changes. It is worth understanding why, beyond the romance.
@@ -34,6 +36,8 @@ The research on how much is shed and what it means for health is still open, and
 
 If the topic interests you in depth, there are academic papers that measured particle release across different bag types. They are worth reading before drawing your own conclusions, because headlines tend to oversimplify a more nuanced issue.
 
+One point worth keeping: the difference is not "plastic or no plastic" but how the bag is sealed. **Unsealed paper** and **plant-fibre** bags add no plastic to the water; **PLA, nylon or PET mesh** bags are the ones studied for particle release. If the bag is heat-sealed and looks translucent, it is almost always synthetic mesh.
+
 ## What is actually worth keeping in mind
 
 Not every bag is the same, and not everyone has time to prepare loose leaf every day. Ordered by what changes the result most:
@@ -51,4 +55,4 @@ For the full breakdown of temperatures and times, see [how to brew green tea](/e
 
 ---
 
-*At LauTea we work with whole leaves and author blends. To find out which blend fits which moment of the day, [follow us on our socials](/#nuestras-redes).*
+*At LauTea we work with whole leaves and author blends. To find out which blend fits which moment of the day, [follow us on our socials](/en/#our-socials).*

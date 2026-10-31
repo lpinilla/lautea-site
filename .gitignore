@@ -3,3 +3,9 @@
 
 # Caché de procesamiento de imágenes de Hugo
 resources/_gen/
+
+# Salida generada por Hugo. La guía oficial es no commitearla: Hugo la
+# recrea en cada build y el workflow de GitHub Actions publica el artifact,
+# no esta carpeta. Versionarla genera diffs enormes en cada build y hace
+# creer que el sitio se sirve desde acá, cuando no es así.
+public/

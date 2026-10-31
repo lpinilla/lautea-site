@@ -35,9 +35,59 @@
 {{ $stylesheet := slice $stylesheetNormalize $stylesheetFA $stylesheetFonts $stylesheetGeneric $stylesheetScreen | resources.Concat "css/style.css" | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $stylesheet.RelPermalink }}" type="text/css" integrity="{{ $stylesheet.Data.Integrity }}" />
 
-{{ template "_internal/opengraph.html" . }}
-{{ template "_internal/twitter_cards.html" . }}
-{{ template "_internal/schema.html" . }}
+{{/* Open Graph y Twitter Card.
+
+    No se usa `template "_internal/opengraph.html"` porque ese template arma
+    `og:image` solo a partir de `.Params.images` de la PAGINA o de
+    `site.Params.images`, sin mirar `image:`. Resultado: todos los articulos
+    compartian la misma imagen generica. Aca se resuelve la imagen propia del
+    articulo primero y se cae a la de marca (`og-default.png`, 1200x630) si no
+    hay. Se emiten absolutas: las redes no resuelven rutas relativas. */}}
+{{- $ogImage := "" -}}
+{{- with .Params.image -}}
+  {{- with resources.Get . -}}
+    {{- $opts := site.Params.image_options | default "webp q90 lanczos photo" -}}
+    {{- with .Resize (printf "1200x630 %s" $opts) -}}{{- $ogImage = .Permalink -}}{{- end -}}
+  {{- else -}}
+    {{- $ogImage = . | absURL -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $ogImage -}}
+  {{- range site.Params.images -}}
+    {{- with resources.Get . -}}{{- $ogImage = .Permalink -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $ogTitle := or .Params.og_title .Title site.Title -}}
+{{- $ogDesc := or .Params.og_description .Description site.Params.description -}}
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="{{ site.Title }}" />
+<meta property="og:title" content="{{ $ogTitle | plainify }}" />
+<meta property="og:description" content="{{ $ogDesc | plainify }}" />
+<meta property="og:locale" content="{{ replace .Language.Lang "-" "_" }}" />
+{{- if eq .Type "articulos" }}
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}" />
+{{- else }}
+<meta property="og:type" content="website" />
+{{- end }}
+{{- with $ogImage }}
+<meta property="og:image" content="{{ . }}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="{{ $.Params.image_alt | default $ogTitle | plainify }}" />
+{{- end }}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ $ogTitle | plainify }}" />
+<meta name="twitter:description" content="{{ $ogDesc | plainify }}" />
+{{- with $ogImage }}
+<meta name="twitter:image" content="{{ . }}" />
+<meta name="twitter:image:alt" content="{{ $.Params.image_alt | default $ogTitle | plainify }}" />
+{{- end }}
+
+<!-- El schema estructurado lo emite layouts/partials/custom_head.html como
+     JSON-LD. Se quitó la llamada al template interno "schema.html" de acá
+     porque generaba microdata duplicada sobre los mismos datos. -->
 
 <!-- A partial to be overwritten by the user.
      Simply place a custom_head.html into
