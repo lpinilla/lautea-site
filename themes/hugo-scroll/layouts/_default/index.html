@@ -84,7 +84,8 @@
 	        (2x de 250, suficiente para pantallas retina) y con width/height
 	        explicitos para que el navegador reserve el espacio y no haya
 	        salto de layout. El PNG original sigue existiendo para el
-	        favicon y para el logo de Organization en el schema. */}}
+	        logo de Organization en el schema (ahi si conviene el
+	        original, y el favicon se redimensiona aparte en head.html). */}}
 	    {{ with resources.Get .Params.header_logo }}
 	      {{ $logo := . }}
 	      {{ with .Resize (printf "500x %s" (site.Params.image_options | default "webp q90 lanczos photo")) }}{{ $logo = . }}{{ end }}
