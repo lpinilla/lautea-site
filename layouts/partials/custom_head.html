@@ -204,10 +204,19 @@
 {{/* ---------- 3d. Product (páginas con datos de producto) ----------
     Product es el ÚNICO tipo de schema con efecto medido en citas de IA
     (61,7% vs 41,6%, y el efecto es más fuerte en dominios de autoridad baja
-    como este). Los datos salen del front matter `product:` de la página;
-    si no están, no se emite el bloque (nunca inventar precio ni rating).
-    `aggregateRating` solo se emite si está declarado: un rating no visible
-    en la página es una violación de las guías de Google. */}}
+    como este). Lo que la IA cita son los atributos concretos: marca,
+    material, para qué sirve. Eso NO depende del precio.
+
+    OJO con `offers`: el precio NO lo controlamos nosotros. Lo fija Mercado
+    Libre y lo cambia cuando hace promociones. Marcar un precio que después
+    no coincide con el que paga el comprador es un dato falso, y Google
+    verifica esto: puede dejar de mostrar el bloque entero. Un precio
+    desactualizado es peor que no tener precio. Por eso el Product va sin
+    `offers` y el precio se muestra en el texto con link a ML, donde el
+    visitante lo ve siempre actualizado.
+
+    `aggregateRating` tampoco se emite: no hay reseñas propias visibles, y
+    un rating no visible viola las guías de Google. */}}
 {{- with .Params.product }}
   {{- $product := dict
       "@context" "https://schema.org"
@@ -220,7 +229,17 @@
       "url" $.Permalink
       "inLanguage" $.Language.Lang
   -}}
-  {{- with .image }}{{ $product = merge $product (dict "image" .) }}{{ end }}
+  {{/* La imagen del producto tiene que ser el PRODUCTO, no el logo de la
+      marca. Google la usa para el resultado enriquecido y las IA
+      multimodales la miran. Se redimensiona a 1200px por Hugo Pipes: la
+      foto original pesa 1,4 MB y no tiene sentido servirla entera. */}}
+  {{- with .image }}
+    {{- $pimg := . }}
+    {{- with resources.Get . }}
+      {{- with .Resize (printf "1200x %s" ($.Site.Params.image_options | default "webp q90 lanczos photo")) }}{{ $pimg = .Permalink }}{{ end }}
+    {{- end }}
+    {{- $product = merge $product (dict "image" $pimg) }}
+  {{- end }}
   {{- with .sku }}{{ $product = merge $product (dict "sku" .) }}{{ end }}
   {{- with .mpn }}{{ $product = merge $product (dict "mpn" .) }}{{ end }}
   {{- with .material }}{{ $product = merge $product (dict "material" .) }}{{ end }}
@@ -232,15 +251,11 @@
     {{- end }}
     {{- $product = merge $product (dict "additionalProperty" $props) }}
   {{- end }}
+  {{/* Dónde se compra: sin precio, pero `url` deja claro a Google y a las IA
+      que el producto está a la venta y dónde. No se emite `priceCurrency`
+      porque una moneda sin monto no aporta nada. */}}
   {{- with .offers }}
-    {{- $offer := dict "@type" "Offer" "url" .url "availability" (.availability | default "https://schema.org/InStock") "priceCurrency" (.priceCurrency | default "ARS") }}
-    {{- with .price }}{{ $offer = merge $offer (dict "price" .) }}{{ end }}
-    {{- with .itemCondition }}{{ $offer = merge $offer (dict "itemCondition" .) }}{{ end }}
-    {{- $product = merge $product (dict "offers" $offer) }}
+    {{- if .url }}{{ $product = merge $product (dict "offers" (dict "@type" "Offer" "url" .url "availability" (.availability | default "https://schema.org/InStock") "itemCondition" (.itemCondition | default "https://schema.org/NewCondition"))) }}{{ end }}
   {{- end }}
-  {{- with .rating }}
-<script type="application/ld+json">{{ merge $product (dict "aggregateRating" (dict "@type" "AggregateRating" "ratingValue" .value "reviewCount" .count)) | jsonify | safeJS }}</script>
-  {{- else }}
 <script type="application/ld+json">{{ $product | jsonify | safeJS }}</script>
-  {{- end }}
 {{- end }}

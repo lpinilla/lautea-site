@@ -12,7 +12,9 @@ product:
   name: "LauTea 3-in-1 hourglass — 2, 3 and 5 minute timer"
   description: "Three-chamber sand timer for tea infusion. Measures 2, 3 and 5 minutes — the standard times for a green tea, a black tea or a spice blend."
   category: "Tea timer"
-  image: "https://lautea.com.ar/images/logo_nombre.png"
+  # Real product photo. Do NOT use the brand logo here: Google uses this
+  # for rich results and multimodal AI models look at it.
+  image: "images/reloj-de-arena-producto.png"
   material: "Metal"
   color: "Silver"
   additionalProperty:
@@ -22,16 +24,20 @@ product:
       value: "Three-chamber hourglass"
     - name: "Use"
       value: "Loose leaf tea infusion"
+  # No `price` on purpose: Mercado Libre sets the price and it changes with
+  # promotions. Marking one that later does not match is false data.
+  # The price is shown in the body copy with a link to ML, always current.
   offers:
     url: "https://articulo.mercadolibre.com.ar/MLA-2159608326-reloj-arena-temporizador-te-en-hebras-lautea-2-3-5-minutos-plateado-2-3-5-metal-_JM"
     availability: "https://schema.org/InStock"
     itemCondition: "https://schema.org/NewCondition"
     priceCurrency: "ARS"
-# Imagen de la pagina (no confundir con product.image, que es la del
-# catalogo). Esta se usa para og:image, para Article.image y para el
-# grafico que se muestra dentro del articulo.
-image: "images/diagram-tea-hourglass.png"
-image_alt: "The three times of the LauTea hourglass: 2 minutes for green tea, 3 for black tea and 5 for spice infusions."
+# Page image (not to be confused with product.image, which is the catalog
+# one). Used for og:image, Article.image and the graphic shown inside the
+# article. For a product the real photo works better: it is what people see
+# when the page is shared, and what a multimodal AI model looks at.
+image: "images/reloj-de-arena-producto.png"
+image_alt: "The LauTea three-chamber hourglass on a kitchen counter, with the white, green and orange sand chambers marking 2, 3 and 5 minutes."
 ---
 
 If you are looking for **a gift for someone who loves tea**, this is the problem it solves: almost everyone who brews loose leaf tea leaves it in longer than they should, and the tea turns bitter. An hourglass gives them the exact time, without thinking about it.
@@ -123,7 +129,7 @@ Yes, and it is one of the few that works at both ends: for a beginner it orders 
 
 ## Where to buy it
 
-It is available on Mercado Libre (Argentina's largest marketplace):
+It is available on Mercado Libre. **The price is set by the listing and may be on sale**, so the current figure is the one shown there:
 
 {{< rawhtml >}}
 <div class="lt-links">

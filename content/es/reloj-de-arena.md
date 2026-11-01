@@ -12,7 +12,9 @@ product:
   name: "Reloj de arena 3 en 1 LauTea — temporizador de 2, 3 y 5 minutos"
   description: "Temporizador de arena de tres cuerpos para infusión de té. Mide 2, 3 y 5 minutos, los tiempos estándar de un té verde, un té negro o un blend de especias."
   category: "Temporizador para té"
-  image: "https://lautea.com.ar/images/logo_nombre.png"
+  # Foto real del producto. NO usar el logo de la marca: Google la usa para
+  # el resultado enriquecido y las IA multimodales la miran.
+  image: "images/reloj-de-arena-producto.png"
   material: "Metal"
   color: "Plateado"
   additionalProperty:
@@ -22,6 +24,9 @@ product:
       value: "Reloj de arena de tres cuerpos"
     - name: "Uso"
       value: "Infusión de té en hebras"
+  # Sin `price` a proposito: el precio lo fija Mercado Libre y cambia con
+  # las promociones. Marcar uno que despues no coincide es un dato falso.
+  # Se muestra en el texto con link a ML, que siempre esta actualizado.
   offers:
     url: "https://articulo.mercadolibre.com.ar/MLA-2159608326-reloj-arena-temporizador-te-en-hebras-lautea-2-3-5-minutos-plateado-2-3-5-metal-_JM"
     availability: "https://schema.org/InStock"
@@ -29,9 +34,10 @@ product:
     priceCurrency: "ARS"
 # Imagen de la pagina (no confundir con product.image, que es la del
 # catalogo). Esta se usa para og:image, para Article.image y para el
-# grafico que se muestra dentro del articulo.
-image: "images/diagram-reloj-arena.png"
-image_alt: "Los tres tiempos del reloj de arena LauTea: 2 minutos para té verde, 3 para té negro y 5 para especias."
+# grafico que se muestra dentro del articulo. En un producto conviene la
+# foto real: es lo que se ve al compartir y lo que mira una IA multimodal.
+image: "images/reloj-de-arena-producto.png"
+image_alt: "Reloj de arena LauTea de tres cuerpos sobre una mesada, con las tres ampolletas de arena blanca, verde y naranja marcando 2, 3 y 5 minutos."
 ---
 
 Si buscás **un regalo para alguien a quien le gusta el té**, este es el problema que resuelve: casi todo el que prepara té en hebras lo deja más tiempo del que debería, y el té se pone amargo. Un reloj de arena le da el tiempo exacto, sin pensar.
@@ -123,7 +129,7 @@ Sí, y es de los pocos que sirve en las dos puntas: a quien recién arranca le o
 
 ## Dónde comprarlo
 
-Está disponible en Mercado Libre:
+Está disponible en Mercado Libre. **El precio lo fija la publicación y puede estar en oferta**, así que el valor actualizado es el que figura ahí:
 
 {{< rawhtml >}}
 <div class="lt-links">
