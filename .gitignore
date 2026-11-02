@@ -11,3 +11,6 @@ resources/_gen/
 # no esta carpeta. Versionarla genera diffs enormes en cada build y hace
 # creer que el sitio se sirve desde acá, cuando no es así.
 public/
+
+# Caché de Python de los scripts de diagrams/
+__pycache__/
