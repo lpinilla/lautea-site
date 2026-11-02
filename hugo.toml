@@ -85,25 +85,25 @@ enableEmoji = true
 			keywords = "teablending,teenhebras,teargentino,loseleaftea,teablend,tea,teaceremony,ceremoniadete,blendsdete"
 
     [[params.contacts]]
-        label = "url"
+        label = "Instagram"
         value = "@lautea.blends"
         url = "https://www.instagram.com/lautea.blends/"
         icon = "fa fa-instagram"
 
      [[params.contacts]]
-         label = "url"
+         label = "TikTok"
          value = "@lautea.blends"
          url = "https://www.tiktok.com/@lautea.blends"
-         icon = "fa fa-joplin"
+         icon = "tiktok"
 
      [[params.contacts]]
-         label = "url"
+         label = "YouTube"
          value = "@lautea.blends"
          url = "https://www.youtube.com/@lautea.blends"
          icon = "fa fa-youtube"
 
      [[params.contacts]]
-         label = "url"
+         label = "Pinterest"
          value = "@lautea_blends"
          url = "https://ar.pinterest.com/lautea_blends/"
          icon = "fa fa-pinterest"

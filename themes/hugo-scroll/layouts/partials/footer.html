@@ -26,10 +26,19 @@
       <a href="{{ "/links/" | relLangURL }}">{{ i18n "allGuidesLink" | default "Todas las guías" }}</a>
     </section>
 
+    {{/* Acá el tema hacía `i18n "{{ .label }}"`: las comillas dobles dejaban
+        el literal `{{ .label }}` del lado del argumento, así que TODOS los
+        iconos salían con aria-label="{{ .label }}", que no dice nada. Y los
+        `label` de hugo.toml eran todos "url", que tampoco. Ahora el nombre
+        accesible es el de la red, que es lo que anuncia un lector de
+        pantalla cuando el enlace es sólo un icono.
+
+        El icono lo resuelve un partial compartido con la sección de redes de
+        la home, porque TikTok no existe en ForkAwesome y necesita un SVG. */}}
     {{ if ne .Site.Params.footer.showContactIcons false }}
       <section class="icons">
         {{ range .Site.Params.contacts }}
-          <a href="{{ .url | safeURL }}" aria-label='{{ i18n "{{ .label }}" }}'><i class="{{ .icon }}"></i></a>
+          <a href="{{ .url | safeURL }}" aria-label="{{ .label }}">{{ partial "contact-icon.html" . }}</a>
         {{ end }}
       </section>
     {{ end }}

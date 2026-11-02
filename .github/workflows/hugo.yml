@@ -59,8 +59,15 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
         run: |
+          # --cleanDestinationDir vacía public/ antes de compilar. Sin esto,
+          # Hugo sólo escribe encima: cualquier archivo que una versión
+          # anterior haya dejado y la actual ya no genere —una página que se
+          # borró, un CSS con el hash viejo— se publica igual, y queda
+          # accesible aunque no lo enlace nadie. Es justo lo que pasó con los
+          # 82 archivos que el sitio arrastraba en public/.
           hugo \
             --minify \
+            --cleanDestinationDir \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Notify IndexNow
         # Avisa a Bing/Yandex qué URLs cambiaron, para reindexarlas antes.

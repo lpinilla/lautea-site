@@ -677,3 +677,13 @@
 }
 
 .lt-red i { font-size: 1.5em; }
+
+/* TikTok no está en ForkAwesome, así que ese icono es un SVG en línea (ver
+   layouts/partials/contact-icon.html). Se lo escala igual que los de la
+   tipografía para que la fila de botones quede pareja. */
+.lt-red .lt-ico-tiktok { width: 1.5em; height: 1.5em; }
+
+/* En el pie los iconos van sueltos y heredan el tamaño del texto (1.3rem),
+   así que el SVG tiene que hacer lo mismo para no quedar más grande que el
+   resto de la fila. */
+.site-footer .lt-ico-tiktok { width: 1em; height: 1em; }

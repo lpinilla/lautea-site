@@ -9,7 +9,7 @@
 <div class="lt-redes">
   {{- range .Site.Params.contacts }}
   <a class="lt-red" href="{{ .url | safeURL }}">
-    <i class="{{ .icon }}" aria-hidden="true"></i><span>{{ .value }}</span>
+    {{ partial "contact-icon.html" . }}<span>{{ .value }}</span>
   </a>
   {{- end }}
 </div>
