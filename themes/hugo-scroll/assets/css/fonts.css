@@ -16,30 +16,74 @@
    ========================================================================== */
 
 
-/* LatinModern-10 regular - latin */
+/* ==========================================================================
+   0. Latin Modern Roman — la serif de marca, para todo el texto corrido
+   --------------------------------------------------------------------------
+   OJO, esto estaba mal de origen: el tema declaraba la familia de cuerpo
+   como 'Latin Modern' pero apuntaba a los archivos `lmmono10-*.woff`, que
+   son LM MONO (máquina de escribir, ancho fijo), no la serif. El sitio
+   entero se veía monoespaciado: se midió que 'iiiiiiiiii' y 'MMMMMMMMMM'
+   ocupan exactamente el mismo ancho.
+
+   Además los bloques declaraban `font-weight: 10`, así que no había
+   negrita real y el navegador la sintetizaba (de ahí el bold feo).
+
+   Acá se declara la familia correcta con sus 4 variantes reales, subseteadas
+   a woff2 desde los OTF de Latin Modern Roman. La mono queda aparte, abajo,
+   con el nombre que le corresponde, para los bloques de código.
+   ========================================================================== */
+
 @font-face {
-  font-family: 'Latin Modern';
+  font-family: 'Latin Modern Roman';
   font-style: normal;
-  font-weight: 10;
+  font-weight: 400;
   font-display: swap;
-  src: local(''), url('../fonts/lmmono10-regular-webfont.woff') format('woff'), /* Modern Browsers */
+  src: local('Latin Modern Roman'), url('../fonts/lmroman10-regular-webfont.woff2') format('woff2');
 }
 
-
-/* LatinModern-10 regular - latin */
 @font-face {
-  font-family: 'Latin Modern';
+  font-family: 'Latin Modern Roman';
   font-style: italic;
-  font-weight: 10;
+  font-weight: 400;
   font-display: swap;
-  src: local(''), url('../fonts/lmmono10-italic-webfont.woff') format('woff'), /* Modern Browsers */
+  src: local('Latin Modern Roman Italic'), url('../fonts/lmroman10-italic-webfont.woff2') format('woff2');
 }
 
-/* Nota: el tema declaraba acá bloques @font-face para Latin Modern en
-   bold y oblique, pero los archivos .woff nunca existieron en el repo y
-   los bloques usaban `font-style: bold`, que es CSS inválido (va
-   font-weight). Nunca se aplicaron y generaban 404 cuando el navegador
-   intentaba resolver el texto en negrita. Se eliminaron. */
+@font-face {
+  font-family: 'Latin Modern Roman';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Latin Modern Roman Bold'), url('../fonts/lmroman10-bold-webfont.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Latin Modern Roman';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Latin Modern Roman Bold Italic'), url('../fonts/lmroman10-bolditalic-webfont.woff2') format('woff2');
+}
+
+/* ==========================================================================
+   0b. Latin Modern Mono — solo para código
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Latin Modern Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''), url('../fonts/lmmono10-regular-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Latin Modern Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''), url('../fonts/lmmono10-italic-webfont.woff') format('woff');
+}
 
 
 /* open-sans-300 - latin */

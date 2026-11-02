@@ -1,5 +1,7 @@
 # Artefactos de herramientas locales (capturas de Playwright, logs, snapshots)
 .playwright-mcp/
+# Capturas sueltas de verificación visual en la raíz del sitio
+/*.png
 
 # Caché de procesamiento de imágenes de Hugo
 resources/_gen/

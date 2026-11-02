@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Las dos filas de la comparación comparten rejilla para que las
+     cajitas queden alineadas en columna. La fila "hoja molida" usa
+     cajitas vacías con borde punteado para decir "no hay segunda ni
+     tercera infusión" sin el recuadro gris lleno, que se leía como
+     un error de render. */
+  .dg-compare { margin-top: 8px; }
+
+  .dg-row { margin-bottom: 22px; }
+
+  .dg-chips { position: relative; }
+
+  .dg-count {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-left: 4px;
+  }
+
+  /* El "1" de hoja molida va en gris apagado: se agota, no rinde. */
+  .dg-chip.is-dead { background: rgba(34, 52, 58, 0.22); }
+
+  .dg-verdict {
+    margin-top: 34px;
+    padding: 22px 26px;
+    border-left: 5px solid var(--verde-claro);
+    background: var(--verde-tenue);
+    border-radius: 0 10px 10px 0;
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .dg-verdict strong { font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <div class="dg-head">
+    <h1 class="dg-title">Cuántas tazas rinde el mismo puñado de té</h1>
+    <p class="dg-sub">La hoja entera se abre de a poco y aguanta; la molida entrega todo de golpe y se agota en la primera.</p>
+  </div>
+
+  <div class="dg-block dg-compare">
+    <p class="dg-label">Infusiones que rinde el mismo puñado</p>
+
+    <div class="dg-row">
+      <span class="dg-row-label">Hoja entera</span>
+      <div class="dg-chips">
+        <span class="dg-chip">1</span>
+        <span class="dg-chip">2</span>
+        <span class="dg-chip">3</span>
+        <span class="dg-count">3 infusiones</span>
+      </div>
+    </div>
+
+    <div class="dg-row">
+      <span class="dg-row-label">Hoja molida</span>
+      <div class="dg-chips">
+        <span class="dg-chip is-dead">1</span>
+        <span class="dg-chip is-empty">&nbsp;</span>
+        <span class="dg-chip is-empty">&nbsp;</span>
+        <span class="dg-count">1 infusión · se agotó</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dg-verdict">
+    <strong>La diferencia es la superficie expuesta.</strong> La hoja molida tiene toda su superficie en contacto con el agua desde el primer segundo, así que suelta todo junto y no le queda nada para después. La hoja entera se hidrata de a poco y sigue dando sabor en la segunda y la tercera.
+  </div>
+
+  <div class="dg-foot">LauTea · lautea.com.ar</div>
+
+</body>
+</html>

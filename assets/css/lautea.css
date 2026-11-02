@@ -2,20 +2,82 @@
    LauTea — estilos propios de artículos y páginas de contenido
    Sobreescribe parcialmente el tema. Paleta y tipografías de marca:
      verde   #5e8f3d   crema  #fff6d5
-     titulares: Oswald   ·   cuerpo: Latin Modern
+     titulares: Oswald   ·   cuerpo: Latin Modern Roman
    ========================================================================== */
 
-/* --- Artículos: el cuerpo grande del tema queda incómodo para leer --- */
+/* --- Ancho de lectura ---------------------------------------------------
+   El tema fija .post en 700px con `width: 80%`, y en escritorio eso deja
+   una franja angosta con ~40% de pantalla vacía.
+
+   El criterio acá es editorial y no simplemente "ensanchar todo": la
+   prosa se mantiene en una medida cómoda (unos 68 caracteres por línea,
+   que es lo que se lee sin perder el renglón), y lo que SÍ gana ancho son
+   los elementos visuales — tablas, gráficos y fotos —, que se salen del
+   margen de texto hacia los costados. Así la página usa la pantalla sin
+   sacrificar legibilidad.
+   ------------------------------------------------------------------------ */
+.page-template .post {
+  width: auto;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 1080px) {
+  .page-template .post {
+    max-width: 940px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* El texto se limita a la medida de lectura... */
+  .page-template .post-header,
+  .page-template .post-title,
+  .page-template .byline,
+  .page-template .post-content > p,
+  .page-template .post-content > ul,
+  .page-template .post-content > ol,
+  .page-template .post-content > blockquote,
+  .page-template .post-content > h2,
+  .page-template .post-content > h3,
+  .page-template .post-content > h4 {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ...y lo visual ocupa el ancho completo del contenedor. */
+  .page-template .post-content > table,
+  .page-template .post-content > .article-figure,
+  .page-template .post-content > .lt-links {
+    max-width: 940px;
+  }
+}
+
+/* El tema trae `hyphens: auto` en .post. Corta palabras en cualquier lado
+   y en pantalla ancha no hace falta partir nada. */
+.post {
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
+/* --- Artículos: la medida de lectura --- */
 .page-template .post-content p,
 .page-template .post-content li {
   font-size: 1.9rem;
   line-height: 1.75;
 }
 
-/* El tema fuerza p a 25px en single.html; lo normalizamos */
+/* El tema fuerza p a 25px en single.html; lo normalizamos.
+   OJO: se usa margin-top/bottom y NO el atajo `margin: 1.2em 0`, porque el
+   atajo pone left/right en 0 y pisaría el centrado de la prosa que hace el
+   media query de arriba (misma especificidad, pero declarado después). */
 .page-template .post-content p {
   font-size: 1.9rem;
-  margin: 1.2em 0;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
 }
 
 /* --- Firma de autor --- */
@@ -30,17 +92,35 @@
   padding-bottom: 1.2rem;
 }
 
-/* --- Titulares con la tipografía de marca --- */
+/* --- Titulares con la tipografía de marca --------------------------------
+   Oswald es condensada y de altura x chica: al mismo `font-size` se ve
+   bastante más chica que la serif, por eso los titulares suben de tamaño
+   y bajan de peso visual. `text-wrap: balance` evita que quede una
+   palabra sola en la última línea del h1 (que es lo que partía el título
+   en dos renglones muy desparejos).
+   ------------------------------------------------------------------------ */
+.page-template h1,
+.post-content h1 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-indent: 0;
+  font-size: 4.4rem;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
 .page-template h2,
 .page-template h3 {
   font-family: "Oswald", sans-serif;
   font-weight: 400;
   letter-spacing: 0;
   text-indent: 0;
+  text-wrap: balance;
 }
 
-.page-template h2 { font-size: 2.8rem; margin-top: 2.2rem; }
-.page-template h3 { font-size: 2.2rem; margin-top: 1.8rem; }
+.page-template h2 { font-size: 3.2rem; line-height: 1.2; margin-top: 3rem; margin-bottom: 0.6rem; }
+.page-template h3 { font-size: 2.4rem; line-height: 1.25; margin-top: 2.4rem; margin-bottom: 0.4rem; }
 
 /* --- Tablas dentro del verde/crema de marca --- */
 .page-template table {

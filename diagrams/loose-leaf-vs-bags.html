@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+  .dg-compare { margin-top: 8px; }
+  .dg-row { margin-bottom: 22px; }
+  .dg-chips { position: relative; }
+
+  .dg-count {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-left: 4px;
+  }
+
+  .dg-chip.is-dead { background: rgba(34, 52, 58, 0.22); }
+
+  .dg-verdict {
+    margin-top: 34px;
+    padding: 22px 26px;
+    border-left: 5px solid var(--verde-claro);
+    background: var(--verde-tenue);
+    border-radius: 0 10px 10px 0;
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .dg-verdict strong { font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <div class="dg-head">
+    <h1 class="dg-title">How many cups the same scoop of tea yields</h1>
+    <p class="dg-sub">Whole leaf opens slowly and keeps going; milled leaf gives everything at once and is spent on the first cup.</p>
+  </div>
+
+  <div class="dg-block dg-compare">
+    <p class="dg-label">Infusions from the same scoop</p>
+
+    <div class="dg-row">
+      <span class="dg-row-label">Whole leaf</span>
+      <div class="dg-chips">
+        <span class="dg-chip">1</span>
+        <span class="dg-chip">2</span>
+        <span class="dg-chip">3</span>
+        <span class="dg-count">3 infusions</span>
+      </div>
+    </div>
+
+    <div class="dg-row">
+      <span class="dg-row-label">Milled leaf</span>
+      <div class="dg-chips">
+        <span class="dg-chip is-dead">1</span>
+        <span class="dg-chip is-empty">&nbsp;</span>
+        <span class="dg-chip is-empty">&nbsp;</span>
+        <span class="dg-count">1 infusion · spent</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dg-verdict">
+    <strong>The difference is exposed surface area.</strong> Milled leaf has all of its surface in contact with the water from the first second, so it releases everything together and has nothing left for later. Whole leaf rehydrates gradually and keeps giving flavour on the second and third cup.
+  </div>
+
+  <div class="dg-foot">LauTea · lautea.com.ar</div>
+
+</body>
+</html>

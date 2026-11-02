@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Escala de temperatura: la zona ideal (70-80 °C) se marca como una
+     banda sólida sobre la línea, en vez del rectángulo verde translúcido
+     que se superponía a las etiquetas de los grados. */
+  .dg-scale { margin: 26px 0 44px; }
+
+  .dg-track {
+    position: relative;
+    height: 4px;
+    background: var(--borde);
+    border-radius: 2px;
+  }
+
+  .dg-band {
+    position: absolute;
+    left: 25%;      /* 70 °C sobre una escala de 60 a 100 */
+    width: 25%;     /* hasta 80 °C */
+    top: -9px;
+    height: 22px;
+    background: var(--verde-claro);
+    border-radius: 6px;
+  }
+
+  .dg-band-label {
+    position: absolute;
+    left: 25%;
+    width: 25%;
+    top: -52px;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 19px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--verde);
+  }
+
+  .dg-ticks {
+    position: relative;
+    height: 30px;
+    margin-top: 12px;
+  }
+
+  .dg-tick {
+    position: absolute;
+    transform: translateX(-50%);
+    font-family: 'Oswald', sans-serif;
+    font-size: 19px;
+    color: var(--verde);
+    opacity: 0.8;
+  }
+
+  .dg-tick::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -13px;
+    width: 1px;
+    height: 8px;
+    background: var(--borde);
+  }
+
+  .dg-warn {
+    margin-top: 40px;
+    padding: 20px 24px;
+    border-left: 5px solid #c9743a;
+    background: rgba(201, 116, 58, 0.10);
+    border-radius: 0 10px 10px 0;
+    font-size: 21px;
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+
+  <div class="dg-head">
+    <h1 class="dg-title">Temperatura y tiempo por tipo de té</h1>
+    <p class="dg-sub">El agua hirviendo es el error más común: cocina la hoja y suelta los taninos de golpe, que son lo amargo.</p>
+  </div>
+
+  <div class="dg-block dg-scale">
+    <p class="dg-label">Temperatura del agua</p>
+    <div class="dg-track">
+      <span class="dg-band-label">Zona ideal</span>
+      <span class="dg-band"></span>
+    </div>
+    <div class="dg-ticks">
+      <span class="dg-tick" style="left: 0%">60°</span>
+      <span class="dg-tick" style="left: 25%">70°</span>
+      <span class="dg-tick" style="left: 50%">80°</span>
+      <span class="dg-tick" style="left: 75%">90°</span>
+      <span class="dg-tick" style="left: 100%">100°</span>
+    </div>
+  </div>
+
+  <div class="dg-block">
+    <p class="dg-label">Hoja, agua y tiempo</p>
+    <table class="dg-table">
+      <thead>
+        <tr><th>Té verde</th><th>Agua</th><th>Tiempo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="dg-strong">Sencha</td><td>70–80 °C</td><td>1–2 min</td></tr>
+        <tr><td class="dg-strong">Gunpowder</td><td>75–80 °C</td><td>2–3 min</td></tr>
+        <tr><td class="dg-strong">Verde con jazmín</td><td>80 °C</td><td>2–3 min</td></tr>
+        <tr><td class="dg-strong">Matcha</td><td>80 °C</td><td>batir, no infusionar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dg-warn">
+    Sin termómetro: hervés el agua, la pasás a otra taza y esperás dos o tres minutos. Eso la baja de 100 °C a unos 80 °C.
+  </div>
+
+  <div class="dg-foot">LauTea · lautea.com.ar</div>
+
+</body>
+</html>

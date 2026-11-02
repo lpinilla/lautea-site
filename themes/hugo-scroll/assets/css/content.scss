@@ -9,7 +9,7 @@ html {
 body {
   height: 100%;
   max-height: 100%;
-  font-family: "Latin Modern", serif;
+  font-family: "Latin Modern Roman", serif;
   font-size: 2rem;
   line-height: 1.6em;
   color: var(--section-light-text-color);
@@ -33,13 +33,13 @@ h1,h2,h3,h4,h5,h6 {
   line-height: 1;
   margin-top: 0;
   margin-bottom: 10px;
-  font-family: "Latin Modern", sans-serif;
+  font-family: "Latin Modern Roman", sans-serif;
 }
 h3,h4,h5,h6 {
   text-rendering: optimizeLegibility;
   line-height: 120%;
   margin-top: 0;
-  font-family: "Latin Modern", sans-serif;
+  font-family: "Latin Modern Roman", sans-serif;
   margin-bottom: 0%;
 }
 
@@ -186,7 +186,7 @@ code, tt {
     color: var(--section-light-text-color);
     background-color: var(--section-uni-code-bg-color);
     border-radius: 3px;
-    font-family: "Latin Modern";
+    font-family: "Latin Modern Mono", monospace;
     font-size: 0.75em;
     padding: 3px 5px;
 }
