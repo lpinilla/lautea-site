@@ -9,6 +9,7 @@ slug: "how-to-brew-green-tea"
 keywords: "how to brew green tea, green tea temperature, green tea steeping time, loose leaf tea, bitter green tea"
 header_menu: false
 image: "images/diagram-green-tea.png"
+image_mobile: "images/diagram-green-tea-mobile.png"
 image_alt: "Chart showing the water temperature and steeping time for each green tea type: sencha, gunpowder, jasmine and matcha."
 ---
 

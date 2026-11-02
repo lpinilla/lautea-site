@@ -9,6 +9,7 @@ slug: "loose-leaf-vs-tea-bags"
 keywords: "loose leaf tea vs tea bags, whole leaf tea, tea bag microplastics, argentine tea"
 header_menu: false
 image: "images/diagram-loose-leaf-vs-bags.png"
+image_mobile: "images/diagram-loose-leaf-vs-bags-mobile.png"
 image_alt: "Comparison of how many infusions the same pinch of tea gives as whole leaf (three) and in a bag (one)."
 ---
 

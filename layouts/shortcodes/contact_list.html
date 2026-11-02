@@ -1,0 +1,15 @@
+{{/* Override del shortcode del tema.
+       El original emitía un <p> suelto por cada red, así que en pantallas
+       anchas quedaban cuatro renglones y media sección vacía al lado. Acá se
+       envuelven en un contenedor para poder mostrarlas como botones en fila
+       (ver `.lt-redes` en assets/css/lautea.css).
+
+       El icono va aria-hidden porque es decorativo: el nombre accesible del
+       enlace es el texto, que ya está. */}}
+<div class="lt-redes">
+  {{- range .Site.Params.contacts }}
+  <a class="lt-red" href="{{ .url | safeURL }}">
+    <i class="{{ .icon }}" aria-hidden="true"></i><span>{{ .value }}</span>
+  </a>
+  {{- end }}
+</div>

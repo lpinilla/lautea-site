@@ -138,17 +138,11 @@
       }
     }
 
-    // Comillas decorativas en los blockquotes. Se usa textContent del primer
-    // <p>, no innerHTML del contenedor, para no re-serializar el HTML.
-    var quotes = document.querySelectorAll("blockquote p");
-    for (var k = 0; k < quotes.length; k++) {
-      var open = document.createElement("span");
-      open.className = "quo fa fa-quote-left";
-      var close = document.createElement("span");
-      close.className = "quo fa fa-quote-right";
-      quotes[k].insertBefore(open, quotes[k].firstChild);
-      quotes[k].appendChild(close);
-    }
+    // Las comillas decorativas de los blockquotes ya no se inyectan acá: eran
+    // dos iconos de ForkAwesome dentro del párrafo, y el de cierre no entraba
+    // en la última línea, así que caía solo en un renglón abajo. Ahora son un
+    // ::before tipográfico colgado en el margen (ver content.scss), que no
+    // participa del flujo del texto y no depende de la tipografía de iconos.
 
     // Sintaxis @icono@ en el contenido -> <i class="fa icono">.
     // `icons` viene de icons.js. Si no esta definido, no se hace nada.

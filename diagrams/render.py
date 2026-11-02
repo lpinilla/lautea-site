@@ -37,6 +37,14 @@ JOBS = [
     ("loose-leaf-vs-bags.html", "diagram-loose-leaf-vs-bags.png"),
 ]
 
+# Cada diagrama se renderiza dos veces. El de escritorio se muestra a 940px
+# de ancho, así que un lienzo de 1200 da margen de sobra. El de mobile se
+# muestra a lo ancho de la pantalla (~360px), y por eso necesita su propio
+# render: si se sirve el mismo PNG ancho, los textos de 19px del diseño
+# terminan a ~6px en el teléfono. El corte de 460px es el que activa el
+# bloque `@media (max-width: 700px)` de base.css.
+VARIANTES = [("", 1200), ("-mobile", 460)]
+
 
 def free_port():
     s = socket.socket()
@@ -229,12 +237,16 @@ def main():
         raise RuntimeError(f"El servidor HTTP no respondio en {base}")
 
     chrome = Chrome(free_port())
+    total = 0
     try:
         for html, png in JOBS:
-            out = os.path.join(SITE, "assets", "images", png)
-            size = render(chrome, f"{base}/{html}", out)
-            print(f"  {html:28} -> {png:36} {size[0]}x{size[1]}")
-        print(f"{len(JOBS)}/{len(JOBS)} diagramas renderizados.")
+            for sufijo, ancho in VARIANTES:
+                salida = png.replace(".png", f"{sufijo}.png")
+                out = os.path.join(SITE, "assets", "images", salida)
+                size = render(chrome, f"{base}/{html}", out, width=ancho)
+                print(f"  {html:28} @{ancho:5}px -> {salida:38} {size[0]}x{size[1]}")
+                total += 1
+        print(f"{total} imagenes de diagrama renderizadas.")
     finally:
         chrome.kill()
         server.terminate()

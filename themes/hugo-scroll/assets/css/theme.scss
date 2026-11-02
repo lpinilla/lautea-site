@@ -197,6 +197,8 @@ a.fn-item {
     // override variables for alternative style
     --color-text: var(--section-dark-text-color);
     --color-background: var(--section-dark-bg-color);
+    // sobre el verde de fondo el hover tiene que aclarar, no oscurecer
+    --link-hover-color: #ffffff;
 
     background-color: var(--section-dark-bg-color);
     color: var(--section-dark-text-color);
@@ -282,26 +284,24 @@ a.fn-item {
 
 /** ==========  Site footer ============ */
 .site-footer {
-  //background: var(--footer-color-background);
-  color: #fff6d5;
+  background: var(--footer-bg-color);
+  color: var(--footer-text-color);
   font-family: "Open Sans", sans-serif;
   font-size: 1.3rem;
   position: relative;
   margin: 0rem 0 0 0;
-  background-color: #fff6d5;
   //padding: 1rem 0;
   //line-height: 1.5em;
   text-align: center;
 }
 
 .site-footer a {
-  //color: var(--footer-color);
-  color: #fff6d5;
+  color: var(--footer-link-color);
   text-decoration: underline;
 }
 
 .site-footer a:hover {
-  color: var(--sticky-menu-text-color);
+  color: var(--footer-link-hover-color);
 }
 
 /* Footer Icons */

@@ -1,12 +1,19 @@
 :root {
 
-    /* === Cover / Landing area === */
+    /* === Cover / Landing area ===
+       --cover-text-color se usa sólo en #site-head, sobre el título de
+       portada, que es texto grande: ahí el 3:1 de AA lo alcanza el verde de
+       marca original. Para texto chico el verde legible es el de
+       --section-light-text-color (ver más abajo). */
     --cover-text-color: #5e8f3d;
     /* Used for Landing screen menu buttons, but potentially usable for highlighting other things */
     --highlight: #75b34c;
-    --highlight-contrast: #ffffff;
+    /* Con blanco encima, el verde claro daba 2,53:1 — por debajo del 4,5:1
+       de AA, así que ni los botones ni el <mark> se leían. Sobre el mismo
+       verde, la tinta oscura de la marca llega a 5,13:1. */
+    --highlight-contrast: #22343a;
     /*inverse colors used for :hover */
-    --highlight-inverse: var(--cover-text-color);
+    --highlight-inverse: var(--section-light-text-color);
     --highlight-inverse-contrast: white;
 
     /* visual guard around title and description, when the feature is enabled */
@@ -14,20 +21,36 @@
     --cover-title-text-shadow: white 0px 0px 7px;
 
 
-    /* === sticky top/left navigation menus === */
-    --sticky-menu-text-color: #9fd067;
+    /* === sticky top/left navigation menus ===
+       #9fd067 es un verde claro: como color de texto sobre el crema de fondo
+       daba 1,66:1, así que el enlace se borraba al pasar el mouse. Como
+       fondo de <mark> tampoco servía. Se usa el verde oscuro de textos
+       chicos (5,39:1) para lo que es texto. */
+    --sticky-menu-text-color: #496f2f;
+    /* Hover de los enlaces del contenido. En las secciones oscuras se
+       redefine, porque este verde sobre el verde de fondo sería invisible. */
+    --link-hover-color: var(--sticky-menu-text-color);
 
 
     /* === Alternating content (post) sections  === */
-    /* Light section - text color */
-    --section-light-text-color: #5e8f3d;
+    /* Light section - text color.
+       El verde de marca original (#5e8f3d) da 3,54:1 sobre el crema de fondo:
+       alcanza para titulares grandes, pero no para texto de párrafo, que
+       necesita 4,5:1 (WCAG AA). Se baja la luminosidad manteniendo el tono
+       (H=96°) hasta 4,65:1, así el color sigue siendo el de la marca pero
+       se lee. El verde original se conserva en --cover-text-color, que se usa
+       en la portada, donde el texto es grande. */
+    --section-light-text-color: #507a34;
     /* Light section - background color */
     --section-light-bg-color: #fff6d5;
 
     /* Dark section - text color */
     --section-dark-text-color: var(--section-light-bg-color);
-    /* Dark section - background color */
-    --section-dark-bg-color: #5e8f3d;
+    /* Dark section - background color.
+       Es el verde de marca sobre el que va el texto crema: daba 3,54:1,
+       insuficiente para párrafos. Bajando la luminosidad al mismo tono
+       (H=96°) el crema llega a 4,65:1 sin salirse de la paleta. */
+    --section-dark-bg-color: #507a34;
 
     /* Light&Dark section >quote. Suppressive color, compared to 'Light section - text color'*/
     --section-uni-quote: #3F5C1E;
@@ -38,9 +61,13 @@
     --single-page-text-color: var(--section-light-text-color);
     --single-page-bg-color: var(--section-light-bg-color);
 
-    /* === Footer === */
-    --footer-color-background: #22343a;
-    --footer-color: #bbc7cc;
+    /* === Footer ===
+       El pie quedó con fondo crema, así que el texto va en verde oscuro.
+       Antes el color de texto también era crema: 1:1, texto invisible. */
+    --footer-bg-color: var(--section-light-bg-color);
+    --footer-text-color: var(--section-light-text-color);
+    --footer-link-color: #496f2f;
+    --footer-link-hover-color: #22343a;
 
     /* === Lists === */
     /* define list element for unnumbered lists, leave empty for default list element */

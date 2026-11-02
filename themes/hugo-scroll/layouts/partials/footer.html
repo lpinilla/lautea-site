@@ -37,12 +37,8 @@
     {{ with .Site.Params.copyright }}
       <section class="copyright">{{ . | safeHTML }}</section>
     {{ end }}
-    {{ if ne .Params.enableGitInfo false }}
-      {{- if $.GitInfo -}}
-      <section>
-       version: {{ .Lastmod.Format "2006-01-02" }} | #{{ .GitInfo.AbbreviatedHash }}
-      </section>
-      {{- end -}}
-    {{ end }}
+    {{/* Acá el tema imprimía «version: 2026-10-31 | #ba96d87»: la fecha de
+        modificación y el hash del commit del propio build, que es información
+        nuestra y no del visitante. Salió del pie. */}}
   </div>
 </footer>

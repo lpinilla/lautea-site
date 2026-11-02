@@ -1,8 +1,11 @@
 /* ==========================================================================
    Base compartida por todos los diagramas.
-   Paleta y tipografías de marca. El lienzo es de 1200px de ancho: se
-   renderiza 1:1, así que en pantallas retina (2x) se ve nítido sin
-   necesitar una imagen más grande.
+   Paleta y tipografías de marca.
+
+   El lienzo NO está fijo en 1200px: se adapta al ancho de la ventana, y
+   render.py lo renderiza dos veces —1200px para escritorio y 460px para
+   mobile—. Antes era fijo en 1200 y en un teléfono el diagrama se veía a un
+   tercio de tamaño: los textos de 19px quedaban en ~6px, ilegibles.
    ========================================================================== */
 
 @font-face {
@@ -31,7 +34,14 @@
 }
 
 :root {
+  /* --verde es el verde de marca y queda para lo que no es texto: filetes,
+     líneas, bordes. Como color de TEXTO sobre el crema da 3,54:1, que sólo
+     alcanza para titulares grandes; con las opacidades que se usaban antes
+     (0,7 a 0,85) bajaba a 2,3:1. Para texto se usa el mismo verde oscurecido
+     que el sitio: mismo tono (H=96°), legible. */
   --verde: #5e8f3d;
+  --verde-texto: #507a34;        /* sobre el crema: 4,65:1 */
+  --verde-texto-tenue: #496f2f;  /* sobre los recuadros tintados: 4,74:1 */
   --verde-claro: #75b34c;
   --crema: #fff6d5;
   --tinta: #22343a;
@@ -44,13 +54,13 @@
 html, body {
   margin: 0;
   padding: 0;
-  width: 1200px;
+  width: 100%;
   background: var(--crema);
 }
 
 body {
   font-family: 'Latin Modern Roman', serif;
-  color: var(--verde);
+  color: var(--verde-texto);
   padding: 64px 72px 56px;
 }
 
@@ -62,7 +72,7 @@ body {
   font-weight: 700;
   font-size: 46px;
   line-height: 1.1;
-  color: var(--verde);
+  color: var(--verde-texto);
   margin: 0 0 10px;
   letter-spacing: -0.01em;
 }
@@ -70,8 +80,7 @@ body {
 .dg-sub {
   font-size: 21px;
   line-height: 1.4;
-  color: var(--verde);
-  opacity: 0.85;
+  color: var(--verde-texto);
   margin: 0;
   max-width: 78ch;
 }
@@ -85,8 +94,7 @@ body {
   font-size: 20px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--verde);
-  opacity: 0.75;
+  color: var(--verde-texto);
   margin: 0 0 14px;
 }
 
@@ -98,15 +106,17 @@ body {
   font-family: 'Oswald', sans-serif;
   font-size: 17px;
   letter-spacing: 0.04em;
-  color: var(--verde);
-  opacity: 0.7;
+  color: var(--verde-texto);
 }
 
 /* --- Tabla --- */
+/* Las filas pares van sobre el verde tenue, donde el verde de texto normal
+   da 4,09:1: por eso la tabla usa el verde de textos chicos, que da 4,74:1. */
 .dg-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 22px;
+  color: var(--verde-texto-tenue);
 }
 
 .dg-table th {
@@ -116,8 +126,7 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: left;
-  color: var(--verde);
-  opacity: 0.75;
+  color: var(--verde-texto-tenue);
   padding: 0 16px 10px;
   border-bottom: 2px solid var(--verde);
 }
@@ -160,7 +169,7 @@ body {
   font-family: 'Oswald', sans-serif;
   font-size: 21px;
   font-weight: 700;
-  color: var(--crema);
+  color: var(--tinta);
   background: var(--verde-claro);
 }
 
@@ -172,11 +181,81 @@ body {
 
 .dg-chip.is-dead {
   background: rgba(34, 52, 58, 0.25);
-  color: var(--crema);
 }
 
 .dg-note {
   font-size: 18px;
-  opacity: 0.8;
   margin: 8px 0 0;
+}
+
+/* ==========================================================================
+   Variante angosta (render.py la usa con un lienzo de 460px).
+   Los selectores van con `body` adelante a propósito: así le ganan a los
+   estilos propios de cada diagrama (que van en un <style> dentro del HTML y
+   por orden le ganarían a cualquier regla de igual especificidad de acá).
+   ========================================================================== */
+@media (max-width: 700px) {
+
+  body { padding: 34px 26px 30px; }
+
+  body .dg-head { margin-bottom: 24px; }
+
+  body .dg-title { font-size: 30px; }
+
+  body .dg-sub { font-size: 18px; }
+
+  body .dg-block { margin-top: 26px; }
+
+  body .dg-label { font-size: 15px; margin-bottom: 10px; }
+
+  body .dg-foot { font-size: 13px; margin-top: 26px; padding-top: 14px; }
+
+  body .dg-table { font-size: 17px; }
+
+  body .dg-table th { font-size: 13px; padding: 0 7px 8px; }
+
+  body .dg-table td { padding: 10px 7px; }
+
+  body .dg-note { font-size: 15px; }
+
+  /* La comparación de cajitas no entra en una fila: la etiqueta va arriba. */
+  body .dg-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  body .dg-row-label { flex: 0 0 auto; font-size: 17px; }
+
+  body .dg-chip { width: 46px; height: 38px; font-size: 16px; border-radius: 7px; }
+
+  body .dg-count { font-size: 13px; margin-left: 2px; }
+
+  /* Los extremos de la escala se salían del lienzo: se la mete para adentro. */
+  body .dg-scale { padding: 0 16px; }
+
+  body .dg-tick { font-size: 15px; }
+
+  /* En mobile no hay lugar para dos rótulos apilados arriba de la línea: la
+     etiqueta de la banda entra DENTRO de la banda, en tinta oscura (5,13:1
+     sobre el verde claro), y así el único rótulo de arriba es el del bloque.
+     El z-index es necesario porque la banda va después en el HTML y si no la
+     taparía. */
+  body .dg-band-label {
+    top: -6px;
+    z-index: 1;
+    font-size: 12px;
+    color: var(--tinta);
+  }
+
+  body .dg-band-label { font-size: 14px; }
+
+  body .dg-warn, body .dg-verdict {
+    font-size: 17px;
+    padding: 14px 16px;
+    margin-top: 24px;
+  }
+
+  body .dg-chip.is-empty { border-width: 1px; }
 }

@@ -85,7 +85,7 @@ a {
     -moz-transition: all ease 0.3s;
 
     &:hover {
-        color: var(--sticky-menu-text-color);
+        color: var(--link-hover-color);
     }
 
     // Fix font awesome icons
@@ -139,12 +139,8 @@ hr {
     padding: 0;
 }
 
-/** Helper to be inserted by JS before quotations*/
-.quo {
-    margin-right: 10px;
-    margin-left: 10px;
-    font-size: 20px;
-}
+/* El helper `.quo` que el JS inyectaba dentro de las citas se eliminó junto
+   con esa inyección: ahora la comilla es un ::before en la cita misma. */
 
 blockquote {
     -moz-box-sizing: border-box;
@@ -177,9 +173,14 @@ blockquote {
     }
 }
 
+/* El resaltado tiene que ser un fondo claro con el texto oscuro encima.
+   Antes usaba --sticky-menu-text-color (que ahora es un verde oscuro, para
+   texto) y encima lo aclaraba con un filtro. Se usa el verde claro de marca
+   con la tinta oscura: 5,13:1, y queda igual que en los artículos. */
 mark {
-    background-color: var(--sticky-menu-text-color);
-    filter: brightness(125%);
+    background-color: var(--highlight);
+    color: var(--highlight-contrast);
+    filter: none;
 }
 
 code, tt {

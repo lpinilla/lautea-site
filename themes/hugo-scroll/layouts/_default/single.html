@@ -39,15 +39,35 @@
         {{/* Grafico propio del articulo. Se procesa con Hugo Pipes (mismo
             pipeline que el banner: webp + lazy) en vez de servir el PNG
             crudo, y se marca loading="lazy" + width/height explicitos para
-            no aportar CLS. */}}
+            no aportar CLS.
+
+            El grafico se dibuja en un lienzo de 1200px con textos de 19-22px.
+            Servir ese mismo PNG en un telefono lo reduce a un tercio y los
+            textos quedan en ~6px. Por eso hay un segundo render, angosto, que
+            se sirve con <picture> por debajo de los 720px.
+
+            El <img> lleva el width/height del render de escritorio, asi que
+            en mobile reservaria el espacio con la proporcion equivocada: por
+            eso la figura lleva las dos proporciones y el CSS elige. */}}
         {{ with .Params.image }}
           {{ with resources.Get . }}
           {{ $opts := $.Site.Params.image_options | default "webp q90 lanczos photo" }}
           {{ with .Resize (printf "1200x %s" $opts) }}
-          <figure class="article-figure">
-            <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
-                 alt="{{ $.Params.image_alt | default $.Title }}"
-                 loading="lazy" decoding="async" />
+          {{ $desktop := . }}
+          {{ $mobile := "" }}
+          {{ with $.Params.image_mobile }}
+            {{ with resources.Get . }}
+              {{ with .Resize (printf "920x %s" $opts) }}{{ $mobile = . }}{{ end }}
+            {{ end }}
+          {{ end }}
+          <figure class="article-figure"{{ if $mobile }}
+            style="--lt-fig-ar: {{ div (mul 1.0 $desktop.Width) $desktop.Height }}; --lt-fig-ar-mobile: {{ div (mul 1.0 $mobile.Width) $mobile.Height }}"{{ end }}>
+            <picture>
+              {{ with $mobile }}<source media="(max-width: 720px)" srcset="{{ .RelPermalink }}" />{{ end }}
+              <img src="{{ $desktop.RelPermalink }}" width="{{ $desktop.Width }}" height="{{ $desktop.Height }}"
+                   alt="{{ $.Params.image_alt | default $.Title }}"
+                   loading="lazy" decoding="async" />
+            </picture>
           </figure>
           {{ end }}
           {{ end }}

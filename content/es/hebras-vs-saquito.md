@@ -9,6 +9,7 @@ slug: "hebras-vs-saquito"
 keywords: "té en hebras vs saquito, té suelto, hoja entera, microplásticos saquito de té, té en hebras argentina"
 header_menu: false
 image: "images/diagram-hebras-vs-saquito.png"
+image_mobile: "images/diagram-hebras-vs-saquito-mobile.png"
 image_alt: "Comparación de cuántas infusiones rinde el mismo puñado de té en hebras (tres) y en saquito (una)."
 ---
 
