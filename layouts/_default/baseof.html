@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+  <head>
+    {{- partial "head.html" . -}}
+			{{ template "_internal/google_analytics.html" . }}
+  </head>
+  <body>
+    {{- partial "header.html" . -}}
+
+    {{/* Hojas sueltas esparcidas por el fondo crema, detrás de todo el
+        contenido (z-index: -1, pointer-events: none). Reemplazan al SVG
+        entero que antes se usaba como background-image. */}}
+    {{- partial "hojas-fondo.html" . -}}
+
+    {{- block "main" . }}{{- end }}
+    {{- partial "footer.html" . -}}
+
+    <!-- JS propio del tema. Ya no se cargan jQuery (88 KB) ni
+         css-vars-ponyfill (23 KB): index.js se reescribio con la API del
+         navegador, y las custom properties las lee getComputedStyle, que
+         todos los motores soportan de forma nativa. Son ~123 KB menos de
+         JavaScript en una pagina que solo hace scroll y resalta un item. -->
+    {{ $scriptIcons := resources.Get "js/icons.js" }}
+    {{ $scriptIndex := resources.Get "js/index.js" }}
+    {{ $js := slice $scriptIcons $scriptIndex | resources.Concat "js/script.js" | resources.Minify | resources.Fingerprint }}
+
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+
+    <!-- A partial to be overwritten by the user.
+             Simply place a custom_body.html into
+             your local /layouts/partials-directory -->
+    {{- partial "custom_body.html" . -}}
+  </body>
+</html>

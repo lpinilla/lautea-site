@@ -300,6 +300,15 @@
   border: 1px solid rgba(94, 143, 61, 0.25);
 }
 
+/* Reloj de arena: su foto de producto no necesita ocupar todo el ancho. En su
+   propia página se la limita y centra para que no domine el artículo.
+   "ENORME, MUY MUY MAL" se arregla con esto en vez de tocar el template. */
+.page-template.page-reloj-de-arena .article-figure {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (max-width: 720px) {
   .article-figure {
     aspect-ratio: var(--lt-fig-ar-mobile, auto);
@@ -558,11 +567,9 @@
 
 /* --- Secciones ----------------------------------------------------------- */
 .post-holder .post {
-  /* El tema no fija `box-sizing`, así que es content-box: sin esto el
-     `width: 100%` más los 24px de relleno de cada lado daban una caja 48px
-     más ancha que la pantalla (y por eso en mobile había desborde). Con
-     border-box el relleno entra en el ancho y, de paso, la columna queda
-     centrada de verdad. */
+  /* Una sola columna centrada, como en main. La grilla de dos columnas que
+     había antes comprimía el contenido y hacía que todo se viera junto;
+     acá vuelve a fluir de arriba a abajo con buen ancho de lectura. */
   box-sizing: border-box;
   width: 100%;
   max-width: calc(var(--lt-ancho-home) + 48px);
@@ -570,6 +577,8 @@
   margin-right: auto;
   padding-left: 24px;
   padding-right: 24px;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 /* El tema deja los títulos de sección en Latin Modern, mientras que los
@@ -605,102 +614,67 @@
   margin: 0 0 1rem;
 }
 
-@media (min-width: 1080px) {
-  /* Dos columnas: el título de la sección pasa a ser el riel izquierdo y el
-     contenido ocupa el resto. Es lo que usa el ancho en vez de dejarlo
-     vacío a los costados. */
-  .post-holder .post {
-    display: grid;
-    grid-template-columns: minmax(0, var(--lt-riel)) minmax(0, 1fr);
-    column-gap: clamp(2.4rem, 3.5vw, 6rem);
-    align-items: start;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
-  .post-holder .post-header { grid-column: 1; }
-  .post-holder .post-content { grid-column: 2; }
+/* Índice de guías como lista simple (como en main), no como grilla de
+   tarjetas comprimida. Cada ítem ocupa su renglón y se lee cómodo. */
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
 }
 
-/* --- Índice de guías como tarjetas --------------------------------------
-   En una sola columna, tres guías son tres renglones y media sección vacía
-   al lado. Como tarjetas usan el ancho completo de la columna de contenido.
-   ------------------------------------------------------------------------ */
-@media (min-width: 1080px) {
-  .article-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1.6rem;
-    margin: 0;
-  }
+/* El JS del tema le agrega la clase `fa-ul` a TODA <ul> y una viñeta
+   ForkAwesome a cada <li> (--ul-li-icon: fa-asterisk). Este índice tiene su
+   propio diseño, sin viñetas, así que las dos inyecciones lo desalignaban:
+   el asterisco suelto y el margen de 2,5em que trae .fa-ul. */
+.article-list.fa-ul { margin-left: 0; }
+.article-list .fa-li { display: none; }
 
-  .article-list li {
-    /* La tarjeta se deriva del color heredado: sobre el verde oscuro la
-       aclara, sobre el crema la oscurece, y en los dos casos el texto sigue
-       teniendo el contraste que ya tenía. */
-    border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
-    background-color: color-mix(in srgb, currentColor 9%, transparent);
-    border-radius: 12px;
-    padding: 1.4rem;
-  }
-
-  .article-list a { line-height: 1.25; }
+.article-list li {
+  margin-left: 0;
+  padding: 1.4rem 0;
+  /* La línea se deriva del color heredado, así funciona sobre cualquier
+     fondo sin quedar invisible. */
+  border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
 }
 
-/* --- Redes, como botones -------------------------------------------------
-   El shortcode del tema emitía un <p> por red: cuatro renglones sueltos y
-   media sección vacía. Como botones entran en una fila, se leen mejor y
-   llegan a los 44px de alto táctil.
-   ------------------------------------------------------------------------ */
-.lt-redes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-  margin: 0;
-}
-
-.lt-red {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-  min-height: 44px;
-  padding: 0.9rem 1.7rem;
-  border: 2px solid color-mix(in srgb, currentColor 35%, transparent);
-  border-radius: 10px;
+.article-list li a {
+  /* El enlace ocupa toda la tarjeta: se puede apretar en cualquier punto
+     del div, no solo sobre el texto. */
+  display: block;
   text-decoration: none;
-  font-size: var(--lt-chico);
   color: inherit;
-  transition: all ease 0.25s;
 }
 
-.lt-red:hover {
-  border-color: var(--highlight);
-  background-color: var(--highlight);
-  color: var(--highlight-contrast);
+.article-list .article-title {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1.5rem, 0.2vw + 1.4rem, 1.9rem);
+  line-height: 1.25;
+  display: block;
 }
 
-.lt-red i { font-size: 1.5em; }
+.article-list .article-desc {
+  display: block;
+  font-size: clamp(1.3rem, 0.1vw + 1.2rem, 1.5rem);
+  line-height: 1.5;
+  color: inherit;
+  margin-top: 0.4rem;
+}
 
-/* TikTok no está en ForkAwesome, así que ese icono es un SVG en línea (ver
-   layouts/partials/contact-icon.html). Se lo escala igual que los de la
-   tipografía para que la fila de botones quede pareja. */
-.lt-red .lt-ico-tiktok { width: 1.5em; height: 1.5em; }
+/* --- Hojas sueltas esparcidas por el fondo crema --------------------------
+   En vez de usar el SVG entero como una sola imagen de fondo, cada hoja es
+   un <svg> independiente (partial hojas-fondo.html) con posición, tamaño y
+   rotación propios. Fondo crema nunca vacío, sin comprimir el contenido. */
+.hojas-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-/* En el pie los iconos van sueltos y heredan el tamaño del texto (1.3rem),
-   así que el SVG tiene que hacer lo mismo para no quedar más grande que el
-   resto de la fila. */
-.site-footer .lt-ico-tiktok { width: 1em; height: 1em; }
-
-/* --- Hojas decorativas en el fondo crema ----------------------------------
-   hojas_solas.svg va en la esquina inferior de las secciones claras para
-   que el fondo crema no quede tan vacío. Es sutil: color claro (#acd194),
-   sin repetir, una rama por sección, y no interfiere con la lectura. */
-.page-template,
-.post-holder:not(.dark) {
-  background-image: url('/images/hojas_solas.svg');
-  background-repeat: no-repeat;
-  background-position: bottom 2rem right 2rem;
-  background-size: auto 200px;
+.hoja {
+  position: absolute;
+  /* width, top, left, transform vienen del estilo inline de cada hoja */
 }
 
 /* --- Animaciones sutiles --------------------------------------------------
