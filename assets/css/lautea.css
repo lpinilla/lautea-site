@@ -28,11 +28,11 @@
      El techo es alto a propósito: si el texto deja de crecer a los 1900px,
      en un monitor de 2560 la página queda como una tira angosta en el medio
      de la pantalla. */
-  --lt-prosa: clamp(1.9rem, 0.3vw + 1.72rem, 2.6rem);
-  --lt-h1: clamp(3.2rem, 1.2vw + 2.6rem, 5rem);
-  --lt-h2: clamp(2.4rem, 0.7vw + 1.9rem, 3.6rem);
-  --lt-h3: clamp(2rem, 0.45vw + 1.7rem, 2.7rem);
-  --lt-chico: clamp(1.4rem, 0.15vw + 1.34rem, 1.75rem);
+  --lt-prosa: clamp(1.5rem, 0.2vw + 1.4rem, 1.9rem);
+  --lt-h1: clamp(2.6rem, 0.9vw + 2.2rem, 3.8rem);
+  --lt-h2: clamp(2rem, 0.5vw + 1.8rem, 3rem);
+  --lt-h3: clamp(1.7rem, 0.3vw + 1.5rem, 2.2rem);
+  --lt-chico: clamp(1.2rem, 0.1vw + 1.2rem, 1.5rem);
 
   --lt-contenedor: 940px; /* ancho de tablas y figuras */
   --lt-medida: 700px;     /* ancho de la prosa (unos 68 caracteres) */
@@ -347,21 +347,29 @@
   border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
 }
 
-.article-list a {
-  font-family: "Oswald", sans-serif;
-  font-size: clamp(1.8rem, 0.25vw + 1.7rem, 2.3rem);
-  color: inherit;
+.article-list li a {
+  /* El enlace ocupa toda la tarjeta: se puede apretar en cualquier punto
+     del div, no solo sobre el título. */
+  display: block;
   text-decoration: none;
+  color: inherit;
 }
 
-.article-list a:hover {
+.article-list .article-title {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1.5rem, 0.2vw + 1.4rem, 1.9rem);
+  line-height: 1.25;
+  display: block;
+}
+
+.article-list .article-title:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
 .article-list .article-desc {
   display: block;
-  font-size: clamp(1.5rem, 0.15vw + 1.44rem, 1.8rem);
+  font-size: clamp(1.3rem, 0.1vw + 1.2rem, 1.5rem);
   line-height: 1.5;
   color: inherit;
   margin-top: 0.4rem;
@@ -379,7 +387,7 @@
    mínimo táctil. */
 .lt-link {
   display: block;
-  padding: 1.4rem 1.8rem;
+  padding: 1.2rem 1.6rem;
   min-height: 44px;
   border: 2px solid var(--section-light-text-color);
   border-radius: 10px;
@@ -398,13 +406,13 @@
 .lt-link .lt-link-title {
   display: block;
   font-family: "Oswald", sans-serif;
-  font-size: 2rem;
+  font-size: 1.7rem;
   letter-spacing: 0.5px;
 }
 
 .lt-link .lt-link-sub {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--lt-texto-chico);
   margin-top: 0.2rem;
 }
@@ -440,7 +448,7 @@
   /* El título de sección ya no es el encabezado de un bloque centrado sino
      el rótulo del riel izquierdo: necesita un paso propio, un poco más
      contenido que un h2 de artículo. */
-  --lt-home-h2: clamp(2.6rem, 0.8vw + 2rem, 4.2rem);
+  --lt-home-h2: clamp(2rem, 0.5vw + 1.8rem, 3.2rem);
 }
 
 @media (min-width: 1700px) { :root { --lt-ancho-home: 1300px; } }
@@ -460,16 +468,16 @@
    igual. Por eso van las dos formas, imitando al tema.
    ------------------------------------------------------------------------ */
 #blog-logo {
-  max-height: clamp(170px, 15vw, 300px);
+  max-height: clamp(120px, 12vw, 200px);
 }
 
 #site-head .blog-title,
 #site-head.withCenteredImage .blog-title {
   /* La palabra «LauTea» va en la serif de la marca, igual que el logotipo:
      acá sólo se la hace crecer con la pantalla. */
-  font-size: clamp(3.6rem, 1.4vw + 2.9rem, 6.4rem);
+  font-size: clamp(2.8rem, 0.8vw + 2.2rem, 4rem);
   letter-spacing: 0;
-  margin: clamp(0.8rem, 1vw, 1.6rem) 0;
+  margin: clamp(0.6rem, 0.8vw, 1.2rem) 0;
 }
 
 #site-head .blog-description,
@@ -486,7 +494,7 @@
      nunca baja de 36px. */
   font-family: "Latin Modern Roman", serif;
   color: var(--section-light-text-color);
-  font-size: clamp(2rem, 0.5vw + 1.8rem, 2.9rem);
+  font-size: clamp(1.5rem, 0.2vw + 1.5rem, 2.2rem);
   line-height: 1.45;
 }
 
@@ -495,8 +503,8 @@
    blanco táctil que conviene tener, y en escritorio se ve chico. */
 #site-head a.btn,
 #site-head.withCenteredImage a.btn {
-  font-size: clamp(1.5rem, 0.3vw + 1.36rem, 2rem);
-  padding: clamp(1rem, 0.4vw + 0.8rem, 1.4rem) clamp(1.7rem, 0.7vw + 1.4rem, 2.6rem);
+  font-size: clamp(1.3rem, 0.2vw + 1.2rem, 1.7rem);
+  padding: clamp(0.9rem, 0.3vw + 0.7rem, 1.2rem) clamp(1.4rem, 0.5vw + 1.2rem, 2.2rem);
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -543,13 +551,13 @@
 }
 
 /* El banner es 1536x1024 y su borde es EXACTAMENTE el crema de marca
-   (#fff6d5), igual que el fondo de la portada. Así que en pantallas anchas
-   no hace falta `cover`, que sólo logra agrandar la ilustración y recortarla
-   hasta dejar una franja: con `contain` se ve entera, a su escala, y el borde
-   se funde con el fondo sin que se note la costura. */
+   (#fff6d5), igual que el fondo de la portada. Con `cover` el dibujo llena
+   todo el ancho de la cabecera en pantallas anchas en vez de quedarse
+   centrado con huecos a los lados; el borde crema se funde con el fondo
+   sin que se note la costura donde se recorta. */
 @media (min-width: 1800px) {
   #site-head.withCenteredImage {
-    background-size: contain;
+    background-size: cover;
   }
 }
 
@@ -611,8 +619,8 @@
     grid-template-columns: minmax(0, var(--lt-riel)) minmax(0, 1fr);
     column-gap: clamp(2.4rem, 3.5vw, 6rem);
     align-items: start;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   .post-holder .post-header { grid-column: 1; }
@@ -638,7 +646,7 @@
     border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
     background-color: color-mix(in srgb, currentColor 9%, transparent);
     border-radius: 12px;
-    padding: 1.8rem;
+    padding: 1.4rem;
   }
 
   .article-list a { line-height: 1.25; }
