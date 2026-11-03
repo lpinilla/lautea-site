@@ -695,3 +695,53 @@
    así que el SVG tiene que hacer lo mismo para no quedar más grande que el
    resto de la fila. */
 .site-footer .lt-ico-tiktok { width: 1em; height: 1em; }
+
+/* --- Animaciones sutiles --------------------------------------------------
+   Nada que distraiga: las secciones entran con un leve fade-up cuando se
+   las alcanza haciendo scroll; la flecha del header tiene un rebote muy
+   leve y continuo; y las tarjetas de guías se levantan un poco al pasar
+   el mouse. Todo respeta `prefers-reduced-motion: reduce`.
+   ------------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes lt-fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes lt-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .post {
+    opacity: 0;
+    animation: lt-fade-up 0.6s ease forwards;
+    animation-play-state: paused;
+  }
+
+  .post.is-visible {
+    animation-play-state: running;
+  }
+
+  /* La primera sección ya está visible al cargar: no hace falta animarla. */
+  .post.first { opacity: 1; animation: none; }
+
+  /* Flecha del header: rebote continuo y muy leve. */
+  #header-arrow {
+    animation: lt-bounce 2.5s ease-in-out infinite;
+  }
+
+  /* Tarjetas de guías: se levantan un poco al pasar el mouse. */
+  .article-list li {
+    transition: transform ease 0.25s;
+  }
+  .article-list li:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post { opacity: 1; animation: none; }
+  #header-arrow { animation: none; }
+  .article-list li { transition: none; }
+}

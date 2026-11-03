@@ -163,4 +163,21 @@
       }
     }
   });
+
+  // Aparece cada sección con un leve fade-up al alcanzarla haciendo scroll.
+  // Si el usuario pidió reducir el movimiento, no se hace nada.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var observer = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('is-visible');
+          observer.unobserve(entries[i].target);
+        }
+      }
+    }, { threshold: 0.1 });
+    var posts = document.querySelectorAll('.post');
+    for (var i = 0; i < posts.length; i++) {
+      observer.observe(posts[i]);
+    }
+  }
 })();
