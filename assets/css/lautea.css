@@ -34,8 +34,8 @@
   --lt-h3: clamp(1.7rem, 0.3vw + 1.5rem, 2.2rem);
   --lt-chico: clamp(1.2rem, 0.1vw + 1.2rem, 1.5rem);
 
-  --lt-contenedor: 940px; /* ancho de tablas y figuras */
-  --lt-medida: 700px;     /* ancho de la prosa (unos 68 caracteres) */
+  --lt-contenedor: 860px; /* ancho de tablas y figuras */
+  --lt-medida: 860px;     /* ancho de la prosa (unos 68 caracteres) */
 }
 
 /* --- Ancho de lectura ---------------------------------------------------
@@ -96,15 +96,15 @@
    anclan la página cuando la pantalla es ancha. */
 @media (min-width: 1700px) {
   :root {
-    --lt-contenedor: 1060px;
-    --lt-medida: 780px;
+    --lt-contenedor: 980px;
+    --lt-medida: 980px;
   }
 }
 
 @media (min-width: 2100px) {
   :root {
-    --lt-contenedor: 1220px;
-    --lt-medida: 860px;
+    --lt-contenedor: 1100px;
+    --lt-medida: 1100px;
   }
 }
 
@@ -362,11 +362,6 @@
   display: block;
 }
 
-.article-list .article-title:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
 .article-list .article-desc {
   display: block;
   font-size: clamp(1.3rem, 0.1vw + 1.2rem, 1.5rem);
@@ -619,8 +614,8 @@
     grid-template-columns: minmax(0, var(--lt-riel)) minmax(0, 1fr);
     column-gap: clamp(2.4rem, 3.5vw, 6rem);
     align-items: start;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
   .post-holder .post-header { grid-column: 1; }
@@ -695,6 +690,18 @@
    así que el SVG tiene que hacer lo mismo para no quedar más grande que el
    resto de la fila. */
 .site-footer .lt-ico-tiktok { width: 1em; height: 1em; }
+
+/* --- Hojas decorativas en el fondo crema ----------------------------------
+   hojas_solas.svg va en la esquina inferior de las secciones claras para
+   que el fondo crema no quede tan vacío. Es sutil: color claro (#acd194),
+   sin repetir, una rama por sección, y no interfiere con la lectura. */
+.page-template,
+.post-holder:not(.dark) {
+  background-image: url('/images/hojas_solas.svg');
+  background-repeat: no-repeat;
+  background-position: bottom 2rem right 2rem;
+  background-size: auto 200px;
+}
 
 /* --- Animaciones sutiles --------------------------------------------------
    Nada que distraiga: las secciones entran con un leve fade-up cuando se
