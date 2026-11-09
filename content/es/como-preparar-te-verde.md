@@ -2,6 +2,7 @@
 title: "Cómo preparar té verde (sin amargarlo)"
 description: "La temperatura del agua y el tiempo de infusión son lo que decide si un té verde sale dulce o amargo. Guía práctica con medidas concretas."
 type: articulos
+weight: 1
 translationKey: "green-tea-brewing"
 author: "Lautaro Pinilla"
 date: 2026-10-31
@@ -34,7 +35,7 @@ Sin termómetro, se resuelve así: hervés el agua, la pasás a otra taza o tete
 
 Una cucharadita de hoja por taza de 200–250 ml. Si usás hebras enteras en lugar de saquito, la hoja ocupa volumen: no la comprimas. La hoja necesita espacio para abrirse, y ese movimiento es lo que hace que la infusión salga redonda.
 
-## Reinfundir: el beneficio de la hoja entera
+## Reinfusionar: el beneficio de la hoja entera
 
 Una de las cosas que más cambia entre el saquito y la hebra suelta aparece en la segunda taza. La hoja entera aguanta **dos o tres infusiones** más. La primera te da lo más delicado y aromático; la segunda, lo más profundo; la tercera, lo más suave. Con el mismo puñado de hojas preparás tres tazas en lugar de una.
 

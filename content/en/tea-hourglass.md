@@ -2,6 +2,7 @@
 title: "3-in-1 tea hourglass: a 2, 3 and 5 minute infusion timer"
 description: "Our 3-in-1 hourglass measures 2, 3 and 5 minutes — the exact time for every infusion. A practical gift for someone who loves tea."
 type: articulos
+weight: 3
 translationKey: "hourglass-timer"
 author: "Lautaro Pinilla"
 date: 2026-10-31
@@ -131,14 +132,7 @@ Yes, and it is one of the few that works at both ends: for a beginner it orders 
 
 It is available on Mercado Libre. **The price is set by the listing and may be on sale**, so the current figure is the one shown there:
 
-{{< rawhtml >}}
-<div class="lt-links">
-  <a class="lt-link" href="https://articulo.mercadolibre.com.ar/MLA-2159608326-reloj-arena-temporizador-te-en-hebras-lautea-2-3-5-minutos-plateado-2-3-5-metal-_JM">
-    <span class="lt-link-title">See the 3-in-1 hourglass</span>
-    <span class="lt-link-sub">Buy on Mercado Libre ⏳</span>
-  </a>
-</div>
-{{< /rawhtml >}}
+{{< boton href="https://articulo.mercadolibre.com.ar/MLA-2159608326-reloj-arena-temporizador-te-en-hebras-lautea-2-3-5-minutos-plateado-2-3-5-metal-_JM" titulo="See the 3-in-1 hourglass" sub="Buy on Mercado Libre ⏳" >}}
 
 ---
 

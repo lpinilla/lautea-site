@@ -1,0 +1,12 @@
+<ul class="article-list">
+  {{ range sort (where .Page.Site.RegularPages "Type" "articulos") "Weight" "asc" }}
+    {{ if and (ne .Params.unlisted true) (ne .Params.translationKey "about") }}
+    <li>
+      <a href="{{ .RelPermalink }}">
+        <span class="article-title">{{ .Title }}</span>
+        {{ with .Description }}<span class="article-desc">{{ . }}</span>{{ end }}
+      </a>
+    </li>
+    {{ end }}
+  {{ end }}
+</ul>

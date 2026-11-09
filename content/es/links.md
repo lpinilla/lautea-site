@@ -4,30 +4,13 @@ description: "Todos los links de LauTea en un solo lugar: guías para preparar t
 header_image: "images/fondo1.png"
 ---
 
-{{< rawhtml >}}
-<div class="lt-links">
-  <a class="lt-link" href="/como-preparar-te-verde/">
-    <span class="lt-link-title">Cómo preparar té verde</span>
-    <span class="lt-link-sub">La guía que resuelve por qué te sale amargo 🌿</span>
-  </a>
-  <a class="lt-link" href="/hebras-vs-saquito/">
-    <span class="lt-link-title">Hebras vs. saquito</span>
-    <span class="lt-link-sub">Qué cambia de verdad en tu taza 🍃</span>
-  </a>
-  <a class="lt-link" href="/reloj-de-arena/">
-    <span class="lt-link-title">Nuestro reloj de arena 3 en 1</span>
-    <span class="lt-link-sub">El compañero de cada infusión ⏳</span>
-  </a>
-  <a class="lt-link" href="/sobre-mi/">
-    <span class="lt-link-title">Nuestra historia</span>
-    <span class="lt-link-sub">Por qué té, y por qué desde 2023 ✨</span>
-  </a>
-  <a class="lt-link" href="/#nuestras-redes">
-    <span class="lt-link-title">Nuestras redes</span>
-    <span class="lt-link-sub">Instagram, TikTok, YouTube y Pinterest 📲</span>
-  </a>
-</div>
-{{< /rawhtml >}}
+{{< enlaces >}}
+  {{< boton href="/como-preparar-te-verde/" titulo="Cómo preparar té verde" sub="La guía que resuelve por qué te sale amargo 🌿" >}}
+  {{< boton href="/hebras-vs-saquito/" titulo="Hebras vs. saquito" sub="Qué cambia de verdad en tu taza 🍃" >}}
+  {{< boton href="/reloj-de-arena/" titulo="Nuestro reloj de arena 3 en 1" sub="El compañero de cada infusión ⏳" >}}
+  {{< boton href="/sobre-mi/" titulo="Nuestra historia" sub="Por qué té, y por qué desde 2023 ✨" >}}
+  {{< boton href="/#nuestras-redes" titulo="Nuestras redes" sub="Instagram, TikTok, YouTube y Pinterest 📲" >}}
+{{< /enlaces >}}
 
 ---
 

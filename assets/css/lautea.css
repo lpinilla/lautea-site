@@ -577,8 +577,8 @@
   margin-right: auto;
   padding-left: 24px;
   padding-right: 24px;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: clamp(7rem, 9vh, 11rem);
+  padding-bottom: clamp(7rem, 9vh, 11rem);
 }
 
 /* El tema deja los títulos de sección en Latin Modern, mientras que los
@@ -600,6 +600,15 @@
   max-width: var(--lt-medida);
   color: inherit;
 }
+
+.post-holder .post-content > p:last-child { margin-bottom: 0; }
+.post-holder .post-content > p { margin-top: 1.35em; margin-bottom: 1.35em; }
+.post-holder .post-content > .article-list { margin-top: 3rem; margin-bottom: 3rem; }
+.post-holder .article-list li { padding: 1.8rem 0; }
+.post-holder .post-content > h5 { margin-bottom: 1.6rem; }
+
+.post-holder:last-of-type .post-content { text-align: center; }
+.lt-redes { justify-content: center; gap: 1.2rem 2rem; }
 
 /* Los `##### ` del contenido hacen de subtítulo de la sección («Nuestra
    historia»). Como h5 sueltos quedaban pegados al título y en el mismo
@@ -660,22 +669,91 @@
   margin-top: 0.4rem;
 }
 
-/* --- Hojas sueltas esparcidas por el fondo crema --------------------------
-   En vez de usar el SVG entero como una sola imagen de fondo, cada hoja es
-   un <svg> independiente (partial hojas-fondo.html) con posición, tamaño y
-   rotación propios. Fondo crema nunca vacío, sin comprimir el contenido. */
+/* --- Hojas sueltas en la sección de guías y artículos ---------------------
+   Detalles botánicos de fondo tomados de solo_hojas.svg (hojas_solas.svg).
+   Viven en los márgenes de la página (tanto en escritorio como adaptadas en
+   pantallas medianas), sin invadir la columna de lectura ni bloquear clics. */
 .hojas-fondo {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: -1;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
 
 .hoja {
   position: absolute;
-  /* width, top, left, transform vienen del estilo inline de cada hoja */
+  fill: #acd194;
+  opacity: 0.68;
+  pointer-events: none;
+  user-select: none;
+  transform-origin: center center;
+  transition: opacity 0.3s ease;
 }
+
+/* En secciones oscuras (ej. sección Guías del homepage) */
+.post-holder.dark .hoja {
+  fill: #acd194;
+  opacity: 0.18;
+}
+
+/* En páginas de guías individuales (artículos) */
+.page-template {
+  position: relative;
+  overflow-x: clip;
+}
+
+.page-template .hojas-fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-template .post {
+  position: relative;
+  z-index: 1;
+}
+
+/* Distribución de las hojas a lo largo de los márgenes */
+.hoja-1  { top: 3%;  left: 3vw;  width: clamp(120px, 11vw, 190px); transform: rotate(-25deg); }
+.hoja-2  { top: 8%;  right: 4vw; width: clamp(130px, 12vw, 200px); transform: rotate(20deg); }
+.hoja-3  { top: 13%; right: 10vw; width: clamp(80px, 7vw, 110px);  transform: rotate(-15deg); }
+.hoja-4  { top: 22%; left: 4vw;  width: clamp(140px, 13vw, 210px); transform: rotate(35deg); }
+.hoja-5  { top: 27%; left: 11vw; width: clamp(90px, 8vw, 130px);  transform: rotate(-10deg); }
+.hoja-6  { top: 32%; right: 3vw; width: clamp(130px, 12vw, 195px); transform: rotate(-25deg); }
+.hoja-7  { top: 43%; left: 3vw;  width: clamp(120px, 10vw, 170px); transform: rotate(-40deg); }
+.hoja-8  { top: 51%; right: 4vw; width: clamp(140px, 13vw, 215px); transform: rotate(30deg); }
+.hoja-9  { top: 56%; right: 11vw; width: clamp(80px, 6vw, 100px);  transform: rotate(-20deg); }
+.hoja-10 { top: 65%; left: 4vw;  width: clamp(125px, 11vw, 180px); transform: rotate(20deg); }
+.hoja-11 { top: 74%; right: 3vw; width: clamp(130px, 12vw, 190px); transform: rotate(-35deg); }
+.hoja-12 { top: 83%; left: 3vw;  width: clamp(120px, 10vw, 170px); transform: rotate(-15deg); }
+.hoja-13 { top: 89%; left: 10vw; width: clamp(90px, 8vw, 125px);  transform: rotate(40deg); }
+.hoja-14 { top: 93%; right: 4vw; width: clamp(130px, 11vw, 180px); transform: rotate(25deg); }
+
+@media (max-width: 1080px) {
+  /* En pantallas intermedias se reducen y atenúan para dar prioridad al contenido */
+  .hoja {
+    opacity: 0.38;
+    scale: 0.75;
+  }
+}
+
+@media (max-width: 720px) {
+  /* En móvil los márgenes laterales desaparecen: se prioriza la lectura */
+  .hoja { display: none; }
+}
+
+/* Redes separadas y con área táctil. */
+.lt-redes { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.8rem; margin: 1.2rem 0; }
+.lt-red { display: inline-flex; align-items: center; gap: 0.65rem; min-height: 44px; padding: 0.35rem 0.7rem; border: 1px solid currentColor; border-radius: 999px; text-decoration: none; }
+.lt-red:hover { transform: translateY(-2px); }
+.lt-red svg { width: 1.6em; height: 1.6em; flex: 0 0 auto; }
 
 /* --- Animaciones sutiles --------------------------------------------------
    Nada que distraiga: las secciones entran con un leve fade-up cuando se

@@ -1,0 +1,87 @@
+{{ define "main" }}
+
+{{ with $img := resources.Get .Params.header_image }}
+{{ $image_options := $.Site.Params.image_options | default "webp q90 lanczos photo" -}}
+<style>
+	main { background-image: url('{{- .RelPermalink -}}'); background-size: cover;background-position: center;background-repeat:space; }
+	p { font-size: 25px; }
+	img { padding-top: 50px;}
+</style>
+{{- end }}
+
+  <main class="content page-template page-{{ .Slug }}">
+    {{ if eq .Type "articulos" }}
+      {{ partial "hojas-guias.html" . }}
+    {{ end }}
+    <article class="post page">
+      <header class="post-header">
+        {{ with .Parent }}
+        <a id="back-to-main-page" href="{{ .RelPermalink | relLangURL }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> {{ or .Title .Site.Title }}</a>
+        {{ end }}
+      </header>
+      <h1 class="post-title">{{ .Title }}</h1>
+      {{/* Firma de autor y fecha visible. Google pide bylines que lleven a una
+          pagina de autor real, y las citas de IA favorecen paginas con fecha
+          de actualizacion comprobable: no alcanza con declararla en el
+          JSON-LD, tiene que verse en la pagina. */}}
+      {{ if and (eq .Type "articulos") (ne .Params.translationKey "about") }}
+      {{/* El enlace va a la pagina de autor DEL IDIOMA ACTUAL. Se busca por
+          translationKey porque la ruta difiere (/sobre-mi/ en ES, /about/ en
+          EN): buscar por ruta fija devolvia vacio en ingles. */}}
+      {{ $authorURL := "" }}
+      {{ range where .Site.RegularPages "Params.translationKey" "about" }}
+        {{ $authorURL = .RelPermalink }}
+      {{ end }}
+      <p class="byline">
+        {{ i18n "bylinePrefix" | default "Por" }}
+        {{ with $authorURL }}<a href="{{ . }}">{{ end }}{{ $.Params.author | default "Lautaro Pinilla" }}{{ if $authorURL }}</a>{{ end }}
+        {{- with .Lastmod }} · {{ i18n "bylineUpdated" | default "Actualizado el" }} <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2/1/2006" }}</time>{{ end }}
+      </p>
+      {{ else if eq .Params.translationKey "about" }}
+      <p class="byline">
+        {{ i18n "bylinePrefix" | default "Por" }} <strong>{{ $.Params.author | default "Lautaro Pinilla" }}</strong>{{ with $.Params.author_title }} · {{ . }}{{ end }}
+      </p>
+      {{ end }}
+      <section class="post-content">
+        {{/* Grafico propio del articulo. Se procesa con Hugo Pipes (mismo
+            pipeline que el banner: webp + lazy) en vez de servir el PNG
+            crudo, y se marca loading="lazy" + width/height explicitos para
+            no aportar CLS.
+
+            El grafico se dibuja en un lienzo de 1200px con textos de 19-22px.
+            Servir ese mismo PNG en un telefono lo reduce a un tercio y los
+            textos quedan en ~6px. Por eso hay un segundo render, angosto, que
+            se sirve con <picture> por debajo de los 720px.
+
+            El <img> lleva el width/height del render de escritorio, asi que
+            en mobile reservaria el espacio con la proporcion equivocada: por
+            eso la figura lleva las dos proporciones y el CSS elige. */}}
+        {{ with .Params.image }}
+          {{ with resources.Get . }}
+          {{ $opts := $.Site.Params.image_options | default "webp q90 lanczos photo" }}
+          {{ with .Resize (printf "1200x %s" $opts) }}
+          {{ $desktop := . }}
+          {{ $mobile := "" }}
+          {{ with $.Params.image_mobile }}
+            {{ with resources.Get . }}
+              {{ with .Resize (printf "920x %s" $opts) }}{{ $mobile = . }}{{ end }}
+            {{ end }}
+          {{ end }}
+          <figure class="article-figure"{{ if $mobile }}
+            style="--lt-fig-ar: {{ div (mul 1.0 $desktop.Width) $desktop.Height }}; --lt-fig-ar-mobile: {{ div (mul 1.0 $mobile.Width) $mobile.Height }}"{{ end }}>
+            <picture>
+              {{ with $mobile }}<source media="(max-width: 720px)" srcset="{{ .RelPermalink }}" />{{ end }}
+              <img src="{{ $desktop.RelPermalink }}" width="{{ $desktop.Width }}" height="{{ $desktop.Height }}"
+                   alt="{{ $.Params.image_alt | default $.Title }}"
+                   loading="lazy" decoding="async" />
+            </picture>
+          </figure>
+          {{ end }}
+          {{ end }}
+        {{ end }}
+        {{ .Content }}
+      </section>
+    </article>
+  </main>
+
+{{ end }}

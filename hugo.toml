@@ -138,3 +138,9 @@ enableEmoji = true
 [services]
   [services.googleAnalytics]
     id = 'G-GGDYGPBNGL'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+

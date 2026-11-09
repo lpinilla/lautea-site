@@ -9,3 +9,5 @@ header_menu: true
 LauTea began in 2023 as a project to rediscover tea as we know it through tea leaves and blends. Each blend of spices, flowers or fruits not only serves a purpose but also enhances some particular quality of tea.
 
 We invite you to discover the true flavor of tea.
+
+[Read more about our story and how I came to tea →](/en/about/)

@@ -1,0 +1,8 @@
+{{- $href := .Get "href" | default (.Get 0) -}}
+{{- $isExternal := or (strings.HasPrefix $href "http://") (strings.HasPrefix $href "https://") -}}
+{{- if not .Parent }}<div class="lt-links">{{ end -}}
+  <a class="lt-link" href="{{ $href }}"{{ if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>
+    <span class="lt-link-title">{{ or (.Get "title") (.Get "titulo") }}</span>
+    {{ with or (.Get "sub") (.Get "subtitle") (.Get "subtitulo") }}<span class="lt-link-sub">{{ . }}</span>{{ end }}
+  </a>
+{{- if not .Parent }}</div>{{ end -}}

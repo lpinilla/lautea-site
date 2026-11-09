@@ -2,6 +2,7 @@
 title: "How to brew green tea (without making it bitter)"
 description: "Water temperature and steeping time decide whether green tea tastes sweet or bitter. A practical guide with exact numbers."
 type: articulos
+weight: 1
 translationKey: "green-tea-brewing"
 author: "Lautaro Pinilla"
 date: 2026-10-31

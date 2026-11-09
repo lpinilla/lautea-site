@@ -2,6 +2,7 @@
 title: "Hebras vs. saquito: qué cambia de verdad en tu taza"
 description: "La diferencia entre té en hebras y té en saquito no es una cuestión de gusto: cambia la hoja, lo que se libera en el agua y cuántas veces te rinde."
 type: articulos
+weight: 2
 translationKey: "loose-leaf-vs-bags"
 author: "Lautaro Pinilla"
 date: 2026-10-31
@@ -23,7 +24,7 @@ La razón es funcional: la hoja molida infusiona en segundos y entra en un sobre
 
 ## Qué cambia en la taza
 
-Con hoja entera, la infusión es más lenta y más gradual. La hoja se abre, y en ese proceso va soltando los compuestos aromáticos de a poco. Eso da un sabor más redondo y menos amargo, y permite **reinfundir dos o tres veces** con el mismo puñado.
+Con hoja entera, la infusión es más lenta y más gradual. La hoja se abre, y en ese proceso va soltando los compuestos aromáticos de a poco. Eso da un sabor más redondo y menos amargo, y permite **re-infusionar dos o tres veces** con el mismo puñado.
 
 Con hoja molida, en cambio, todo pasa al mismo tiempo: rápido, intenso y con los taninos incluidos. Por eso el saquito perdona menos el tiempo de infusión y se pone amargo enseguida.
 

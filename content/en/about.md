@@ -3,18 +3,16 @@ title: "About Lautaro Pinilla, tea blender at LauTea"
 description: "I'm Lautaro Pinilla, founder of LauTea. I started drinking tea for health reasons and ended up making author blends in Quilmes, Buenos Aires."
 type: articulos
 translationKey: "about"
+author: "Lautaro Pinilla"
+author_title: "Founder of LauTea · Quilmes, Buenos Aires"
 date: 2026-10-31
 slug: "about"
 header_menu: false
 ---
 
-{{< rawhtml >}}
-<p class="byline">By <strong>Lautaro Pinilla</strong> · Founder of LauTea · Quilmes, Buenos Aires</p>
-{{< /rawhtml >}}
-
 ## How I got into tea
 
-I did not come to tea through family tradition or an early calling. I came to it for health reasons: {{< rawhtml >}}<mark>drinking tea started as something I had to do, not something I was looking for.</mark>{{< /rawhtml >}} What began as an obligation turned into something else as I started paying attention to what I was drinking.
+I did not come to tea through family tradition or an early calling. I came to it for health reasons: <mark>drinking tea started as something I had to do, not something I was looking for.</mark> What began as an obligation turned into something else as I started paying attention to what I was drinking.
 
 And that is where the problem appeared: almost every tea I could find was bagged and milled, without nuance. When I first tried whole leaf, I understood I had been drinking a different beverage under the same name. That was the real starting point.
 

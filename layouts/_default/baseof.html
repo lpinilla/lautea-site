@@ -7,11 +7,6 @@
   <body>
     {{- partial "header.html" . -}}
 
-    {{/* Hojas sueltas esparcidas por el fondo crema, detrás de todo el
-        contenido (z-index: -1, pointer-events: none). Reemplazan al SVG
-        entero que antes se usaba como background-image. */}}
-    {{- partial "hojas-fondo.html" . -}}
-
     {{- block "main" . }}{{- end }}
     {{- partial "footer.html" . -}}
 

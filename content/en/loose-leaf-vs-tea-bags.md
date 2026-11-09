@@ -2,6 +2,7 @@
 title: "Loose leaf vs. tea bags: what actually changes in your cup"
 description: "The difference between loose leaf tea and tea bags is not a matter of taste: it changes the leaf, what it releases into the water, and how many cups it gives you."
 type: articulos
+weight: 2
 translationKey: "loose-leaf-vs-bags"
 author: "Lautaro Pinilla"
 date: 2026-10-31

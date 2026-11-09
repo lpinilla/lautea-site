@@ -2,6 +2,7 @@
 title: "Reloj de arena 3 en 1 para té: timer de 2, 3 y 5 minutos"
 description: "Nuestro reloj de arena 3 en 1 mide 2, 3 y 5 minutos: el tiempo exacto de cada infusión. Un regalo útil para quien le gusta el té."
 type: articulos
+weight: 3
 translationKey: "hourglass-timer"
 author: "Lautaro Pinilla"
 date: 2026-10-31
@@ -54,9 +55,9 @@ Un **temporizador de arena de tres cuerpos** con tres tiempos: **2, 3 y 5 minuto
 
 | Tiempo | Para qué sirve |
 |---|---|
-| **2 minutos** | Té verde y tés delicados, que se amargan rápido |
-| **3 minutos** | El tiempo estándar de un té negro o un blend |
-| **5 minutos** | Infusiones de especias, frutas o hierbas, que necesitan más |
+| **2 minutos** | Té blanco y tés delicados, que se amargan rápido |
+| **3 minutos** | El tiempo estándar de un té verde |
+| **5 minutos** | Recomendado para tés negros o infusiones con especias |
 
 ## Por qué sirve de verdad
 
@@ -131,14 +132,7 @@ Sí, y es de los pocos que sirve en las dos puntas: a quien recién arranca le o
 
 Está disponible en Mercado Libre. **El precio lo fija la publicación y puede estar en oferta**, así que el valor actualizado es el que figura ahí:
 
-{{< rawhtml >}}
-<div class="lt-links">
-  <a class="lt-link" href="https://articulo.mercadolibre.com.ar/MLA-2159608326-reloj-arena-temporizador-te-en-hebras-lautea-2-3-5-minutos-plateado-2-3-5-metal-_JM">
-    <span class="lt-link-title">Ver el reloj de arena 3 en 1</span>
-    <span class="lt-link-sub">Compra en Mercado Libre ⏳</span>
-  </a>
-</div>
-{{< /rawhtml >}}
+{{< boton href="https://articulo.mercadolibre.com.ar/MLA-2159608326-reloj-arena-temporizador-te-en-hebras-lautea-2-3-5-minutos-plateado-2-3-5-metal-_JM" titulo="Ver el reloj de arena 3 en 1" sub="Compra en Mercado Libre ⏳" >}}
 
 ---
 
